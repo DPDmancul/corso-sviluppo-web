@@ -4,9 +4,9 @@ stages:
 compile:
   image: aergus/latex
   stage: production
-  only:
-    refs:
-      - master
+  #only:
+    #refs:
+      #- master
   before_script:
     - apt-get update
     - apt-get install -y wkhtmltopdf

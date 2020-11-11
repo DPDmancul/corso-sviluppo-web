@@ -1,0 +1,26 @@
+stages:
+  - production
+
+compile:
+  image: aergus/latex
+  stage: production
+  only:
+    refs:
+      - master
+  before_script:
+    - apt-get update
+    - apt-get install -y wkhtmltopdf
+  script:
+    - mkdir show
+    - mkdir print
+
+    - ./make.sh
+    - mv Lezione*.pdf show
+
+    - sed -i -re '1,1 s/(]\{beamer\})/,handout\1/g' header.tex
+    - ./make.sh
+    - mv Lezione*.pdf print
+  artifacts:
+    paths:
+      - show/*.pdf
+      - print/*.pdf

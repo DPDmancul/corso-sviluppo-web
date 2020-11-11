@@ -1,0 +1,56 @@
+\documentclass[aspectratio=169,compress]{beamer}
+
+\pdfpagewidth\paperwidth
+\pdfpageheight\paperheight
+
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern,amsmath,amssymb,cclicenses,graphicx,subcaption,adjustbox,minted,tikz}
+
+\input{html_renderer.tex}
+
+\setminted{fontsize=\scriptsize}
+
+%\usetheme{Hannover}%{Warsaw}
+\usecolortheme{beaver}
+
+\usecolortheme{orchid}
+\useinnertheme[shadow]{rounded}
+\useinnertheme{circles}
+
+\setbeamercolor{title in sidebar}{parent=title}
+\setbeamercolor{section in sidebar}{parent=title}
+\useoutertheme[height=0pt,left]{sidebar}
+
+\setbeamertemplate{frametitle}[default][center]
+
+% \setbeamercolor{background canvas}{bg=orange}
+
+\hypersetup{pdfstartview={Fit}} % fits the presentation to the window when first displayed
+
+\beamertemplatenavigationsymbolsempty
+
+\def\sectionname{Sezione}
+\AtBeginSection{\frame{\transfade\sectionpage}}
+
+\newtheorem{exercise}{Esercizio}
+\theoremstyle{example}
+\newtheorem{sol}[exercise]{Soluzione}
+
+\def\itemtt[#1]{\item[\texttt{#1}]}
+\newmintinline[minthtml]{html}{fontsize=\normalsize}
+\newmintinline[minttag]{apacheconf}{fontsize=\normalsize}
+\newmintinline[mintattribute]{ini}{fontsize=\normalsize}
+\newmintinline[mintcss]{css}{fontsize=\normalsize}
+\newmintinline[mintjs]{js}{fontsize=\normalsize}
+
+\title{Corso di sviluppo web}
+\author{Davide Peressoni}
+\institute[]{Commissione Informatica\\Collegio Universitario don Nicola Mazza}
+\titlegraphic{\includegraphics[height=80px]{ComInfo}}
+
+\newcommand{\import}[1]{
+  \input{data/#1.tex}
+}

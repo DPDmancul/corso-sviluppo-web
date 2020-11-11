@@ -1,0 +1,99 @@
+% !TeX root = ../../Lezione1.tex
+\section{Elenchi}
+
+\begin{frame}[fragile]{Elenchi numerati (ordered list)}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip]{<meta charset="utf-8">}{
+<ol>
+    <li> Tizio
+    <li> Caio
+    <li> Sempronio
+</ol>
+  }{}
+\end{frame}
+
+\begin{frame}[fragile]{Elenchi puntati (unordered list)}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip]{<meta charset="utf-8">}{
+<ul>
+    <li> Tizio
+    <li> Caio
+    <li> Sempronio
+</ul>
+  }{}
+\end{frame}
+
+\begin{frame}[fragile]{Descrizioni}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip]{<meta charset="utf-8">}{
+<dl>
+    <dt> Responsabile </dt>
+    <dd> Tizio </dd>
+
+    <dt> Supervisore </dt>
+    <dd> Caio </dd>
+
+    <dt> Collaboratore </dt>
+    <dd> Sempronio </dd>
+</dl>
+  }{}
+\end{frame}
+
+\begin{frame}[fragile]{Sottoelenchi}\transfade\centering
+  \htmlDual[-s A7][][trim={0 7cm 0 0},clip]{<meta charset="utf-8">}{
+<ul>
+    <li> Tizio
+    <li> Caio
+    <li> Mario
+      <ul>
+        <li> Rossi
+        <li> Bianchi
+      </ul>
+    </li>
+    <li> Sempronio
+</ul>
+  }{}
+\end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \htmlRender[-s A7][trim={0 4cm 0 0},clip]{
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title> Memory </title>
+    </head>
+    <body>
+
+        <header>
+            <hgroup>
+                <h1> Memory </h1>
+                <h2> Fai la tua mossa </h2>
+            </hgroup>
+        </header>
+
+        <section>
+            <h3> Giusto / Sbagliato </h3>
+            <p> Tentativi: 0 </p>
+            <p> Giuste: 0 </p>
+        </section>
+
+<footer>
+    <ul>
+        <li> Informazioni sul gioco
+        <li> Torna su
+    </ul>
+</footer>
+
+    </body>
+</html>}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \makeatletter
+    \inputminted[breaklines, firstline=22, lastline=27]{html}{\html@dir/\jobname _\thehtml@count.html}
+    \makeatother
+  \end{sol}
+\end{frame}

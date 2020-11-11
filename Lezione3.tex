@@ -1,0 +1,59 @@
+% !TeX root = ./Lezione3.tex
+\documentclass[aspectratio=169,compress]{beamer}
+
+\newcommand{\iclass}{beam}
+\input{fnc/import.tex}
+
+\usetheme[background=light,subsectionpage=progressbar]{metropolis}%numbering=none
+\useoutertheme{split}
+\hypersetup{pdfstartview={Fit}} % fits the presentation to the window when first displayed
+
+\metroset{block=fill}
+
+\begin{document}
+\title{Corso introduttivo a \LaTeX}
+\subtitle{Lezione 3}
+\author{Davide Peressoni}
+\institute[]{Commissione Informatica\\Collegio Universitario don Nicola Mazza}
+\date%[DATE CURTE]
+{4 Novembre 2019}
+\titlegraphic{\includegraphics[height=80px]{ComInfo}}
+
+\setbeamertemplate{title page}{
+  \begin{minipage}[b][\paperheight]{\textwidth}
+    \vfill%
+    \ifx\inserttitle\@empty\else\usebeamertemplate*{title}\fi
+    \ifx\insertsubtitle\@empty\else\usebeamertemplate*{subtitle}\fi
+    \usebeamertemplate*{title separator}
+    \vspace*{1cm}
+    \adjustbox{valign=M}{\ifx\inserttitlegraphic\@empty\else\usebeamertemplate*{title graphic}\fi}
+    \adjustbox{valign=M}{\begin{minipage}{200px}
+      \ifx\beamer@shortauthor\@empty\else\usebeamertemplate*{author}\fi
+      \ifx\insertdate\@empty\else\usebeamertemplate*{date}\fi
+      \ifx\insertinstitute\@empty\else\usebeamertemplate*{institute}\fi
+    \end{minipage}}
+    \vfill
+    \vspace*{1mm}
+  \end{minipage}
+}
+\setbeamertemplate{title graphic}{\inserttitlegraphic}
+
+\maketitle
+
+% \frame{\transfade
+%   \frametitle{Table of Contents}
+%   \tableofcontents[hideallsubsections]
+% }
+\frame{
+  \tiny\input{license.tex}
+}
+
+\import{immagini}
+\import{tikz}
+\import{presentazioni}
+\import{greco}
+\import{chimica}
+
+\setbeamercolor{background canvas}{bg=black}
+\frame[plain]{\transfade}
+\end{document}

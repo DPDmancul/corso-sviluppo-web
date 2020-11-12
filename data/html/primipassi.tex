@@ -158,11 +158,17 @@
             </hgroup>
         </header>
 
-        <section>
-            <h3> Giusto / Sbagliato </h3>
-            <p> Tentativi: 0 </p>
-            <p> Giuste: 0 </p>
-        </section>
+        <article>
+
+            <!-- Tavolo gioco memory -->
+
+            <section>
+                <h3> Giusto / Sbagliato </h3>
+                <p> Tentativi: 0 </p>
+                <p> Giuste: 0 </p>
+            </section>
+
+        </article>
 
     </body>
 </html>}
@@ -172,7 +178,7 @@
 \begin{frame}[fragile]\transfade
   \begin{sol}\centering
     \makeatletter
-    \inputminted[breaklines]{html}{\html@dir/\jobname _\thehtml@count.html}
+    \inputminted[breaklines,fontsize=\tiny]{html}{\html@dir/\jobname _\thehtml@count.html}
     \makeatother
   \end{sol}
 \end{frame}

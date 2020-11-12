@@ -16,12 +16,198 @@
     \item[carattere]
       \mintcss{font-family: "Times New Roman", Times, serif;}
     \bigskip
-    \item[stile e peso]
+    \item[stile]
       \begin{tabular}{ll}
         \mintcss{font-style: italic /* oppure normal */;} & {\textit{esempio}}\\
-        \mintcss{font-weight: bold /* oppure normal */;} & {\textbf{esempio}}
+        \mintcss{font-weight: bold /* oppure normal */;} & {\textbf{esempio}}\\
+        \mintcss{text-decoration: underline;} & {\underline{esempio}}\\
+        \mintcss{/*oppure overline, line-through, none */}
       \end{tabular}
     \bigskip
     \item[allineamento] \mintcss{text-align: /* left, */ center /*, right, justify */;}
   \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Sfondo}\transfade\centering
+  \begin{description}[<+->]
+    \item[colore]
+      \mintcss{background-color: orange;}
+    \bigskip
+    \item[immagine]
+      \begin{minted}[fontsize=\normalsize]{css}
+background-image: url("sfondo.png");
+background-repeat: repeat-x /*, repeat-y, no-repeat*/;
+background-position: left top;
+background-attachment: fixed /*, scroll */;
+background-size: cover /*, contain */;
+      \end{minted}
+    \bigskip
+  \end{description}
+\end{frame}
+
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \begin{columns}
+      \begin{column}{.45\textwidth}
+        \htmlRender[-s A5][height=.85\textheight, trim={0 5cm 0 0},clip]{<meta charset="utf-8"><style>img{width:70px}</style>
+    <base href="../../memory/html">
+<style>
+body{
+    background-color: bisque;
+    text-align: center;
+}
+
+h1{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 40pt;
+    color: blue;
+}
+
+.corretto{
+    color: green;
+}
+.errore{
+    color: red;
+}
+
+#tavolo{
+    background-color: white;
+}
+
+footer ul a, #gioco button{
+    background-color: brown;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+</style>
+<header id="top">
+    <hgroup>
+        <h1> Memory </h1>
+        <h2> Fai la tua mossa </h2>
+    </hgroup>
+</header>
+
+<article id="gioco">
+<table id="tavolo">
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+  </table>
+
+<section>
+<h3 class="corretto"> Giusto </h3>
+<h3 class="errore"> Sbagliato </h3>
+      <p> Tentativi: 0 </p>
+      <p> Giuste: 0 </p>
+  </section>
+
+  <button> Ricomincia </button>
+</article>
+
+<footer>
+    <ul>
+        <li> <a href="https://it.wikipedia.org/wiki/Memoria_(gioco)" target="_blank"> Informazioni sul gioco </a>
+        <li> <a href="#top"> Torna su </a>
+    </ul>
+</footer>}
+      \end{column}
+      \begin{column}{.45\textwidth}
+        \begin{enumerate}
+          \item Sfondo colorato
+          \item Testo allineato al centro
+          \item Titolo simpatico e a \texttt{40pt}
+          \item Colori per "giusto" / "sbagliato"
+          \item Sfondo tavolo bianco
+          \item Link e pulsanti con testo bianco centrato su fondo marrone.
+          \item Link senza sottolineatura.
+        \end{enumerate}
+      \end{column}
+    \end{columns}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \texttt{memory.html}:
+    \mint{html}{<link rel="stylesheet" href="memory.css">}
+    \begin{enumerate}
+      \item Sfondo colorato
+      \item Testo allineato al centro\\
+      \texttt{memory.css}:
+      \makeatletter
+      \inputminted[breaklines, firstline=4, lastline=7]{css}{\html@dir/\jobname _\thehtml@count.html}
+      \item Titolo simpatico e a \texttt{40pt}
+      \inputminted[breaklines, firstline=9, lastline=13]{css}{\html@dir/\jobname _\thehtml@count.html}
+      \makeatother
+    \end{enumerate}
+  \end{sol}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+      \setcounter{enumi}{3}
+      \item Colori per "giusto" / "sbagliato"\\
+      \texttt{memory.html}:
+      \makeatletter
+      \inputminted[breaklines, firstline=69, lastline=70]{html}{\html@dir/\jobname _\thehtml@count.html}
+      \texttt{memory.css}:
+      \inputminted[breaklines, firstline=15, lastline=20]{css}{\html@dir/\jobname _\thehtml@count.html}
+      \item Sfondo tavolo bianco\\
+      \texttt{memory.html}:
+      \makeatletter
+      \inputminted[breaklines, firstline=41, lastline=41]{html}{\html@dir/\jobname _\thehtml@count.html}
+      \texttt{memory.css}:
+      \inputminted[breaklines, firstline=22, lastline=24]{css}{\html@dir/\jobname _\thehtml@count.html}
+      \makeatother
+    \end{enumerate}
+  \end{sol}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+      \setcounter{enumi}{5}
+      \item Link e pulsanti con testo bianco centrato su fondo marrone.\\
+      \texttt{memory.html}:
+      \makeatletter
+      \inputminted[breaklines, firstline=40, lastline=40]{html}{\html@dir/\jobname _\thehtml@count.html}
+      \texttt{memory.css}:
+      \begin{minted}{css}
+footer ul a, #gioco button{
+    background-color: brown;
+    color: white;
+    text-align: center;
+}
+\end{minted}
+      \item Link senza sottolineatura.
+      \inputminted[breaklines, firstline=26, lastline=31]{css}{\html@dir/\jobname _\thehtml@count.html}
+      \makeatother
+    \end{enumerate}
+  \end{sol}
 \end{frame}

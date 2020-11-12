@@ -11,8 +11,6 @@
 
 \input{html_renderer.tex}
 
-\setminted{fontsize=\scriptsize}
-
 %\usetheme{Hannover}%{Warsaw}
 \usecolortheme{beaver}
 
@@ -40,13 +38,17 @@
 \newtheorem{sol}[exercise]{Soluzione}
 
 \def\itemtt[#1]{\item[\texttt{#1}]}
-\newmintinline[minthtml]{html}{fontsize=\normalsize}
-\newmintinline[minttag]{apacheconf}{fontsize=\normalsize}
-\newmintinline[mintattribute]{ini}{fontsize=\normalsize}
-\newmintinline[mintcss]{css}{fontsize=\normalsize}
-\newmintinline[mintjs]{js}{fontsize=\normalsize}
 
-\title{Corso di sviluppo web}
+\setminted{fontsize=\scriptsize}
+\setmintedinline{fontsize=\normalsize}
+\newmintinline[minthtml]{html}{}
+\newmintinline[minttag]{apacheconf}{}
+\newmintinline[mintattribute]{ini}{}
+\newmintinline[mintcss]{css}{}
+\newmintinline[mintsmallcss]{css}{fontsize=\small}
+\newmintinline[mintjs]{js}{}
+
+\title{Corso introduttivo allo sviluppo web}
 \author{Davide Peressoni}
 \institute[]{Commissione Informatica\\Collegio Universitario don Nicola Mazza}
 \titlegraphic{\includegraphics[height=80px]{ComInfo}}

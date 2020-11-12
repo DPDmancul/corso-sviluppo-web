@@ -30,15 +30,15 @@
   Le dichiarazioni sono composte da una \emph{proprietà} e da un \emph{valore} (separati da \texttt{:}) e sono separate da \texttt{;}\\
 \end{frame}
 
-\begin{frame}{Selettori}\transfade\centering
+\begin{frame}[fragile]{Selettori}\transfade\centering
   \begin{description}[<+->]
-    \itemtt[p] identifica ogni elemento con tag \minttag{p}.
+    \itemtt[\mintcss{p}] identifica ogni elemento con tag \minttag{p}.
     \itemtt[\#id] identifica l'elemento mediante il suo \mintattribute{id}.
-    \itemtt[.class] identifica tutti gli elementi della classe \mintattribute{class}.
-    \itemtt[p.class] identifica ogni elemento con tag \minttag{p} che appartiene alla classe.
+    \itemtt[\mintcss{.class}] identifica tutti gli elementi della classe \mintattribute{class}.
+    \itemtt[\mintcss{p.class}] identifica ogni elemento con tag \minttag{p} che appartiene alla classe.
     \itemtt[*] identifica tutti gli elementi.
-    \itemtt[\small h1, h2, .titolo] identifica ogni elemento che corrisponde ad un criterio della lista.
-    \itemtt[\#id p] identifica ogni elemento con tag \minttag{p} ccontenuto nell'elemnto con l'\mintattribute{id} specificato.
+    \itemtt[\mintsmallcss{h1, h2, .titolo}] identifica ogni elemento che corrisponde ad un criterio della lista.
+    \itemtt[\#id \mintcss{p}] identifica ogni elemento con tag \minttag{p} contenuto nell'elemento con l'\mintattribute{id} specificato.
   \end{description}
 \end{frame}
 

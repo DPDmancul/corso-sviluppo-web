@@ -1,1 +1,1 @@
-for i in Lezione*.tex ; do latexmk -shell-escape -pdf "$i"; done
+for i in Parte*.tex ; do latexmk -shell-escape -pdf "$i"; done

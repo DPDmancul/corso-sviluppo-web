@@ -1,0 +1,60 @@
+.corretto{
+    color : green;
+}
+.errore{
+    color : red;
+}
+
+h1{
+    font-family : "Comic Sans MS", cursive, sans-serif;
+    font-size : 40pt;
+    color : blue;
+}
+
+h1, h2, h3{
+    margin : 0;
+}
+
+body{
+    background-color: bisque;
+    text-align : center;
+}
+
+#gioco{
+    display : flex;
+    justify-content : center;
+}
+
+#gioco aside{
+    margin : auto 20px;
+}
+
+#tavolo{
+    background-color: white;
+    padding : 15px;
+    border : solid 1px black;
+    border-radius : 20px;
+    margin: 20px;
+}
+
+#tavolo img{
+    height : 100px;
+    width : 100px;
+}
+
+footer ul li{
+    display : inline;
+    margin : 0 20px;
+}
+footer ul a, #gioco aside button{
+    background-color : brown;
+    color : white;
+    padding : 10px 20px;
+    border : none;
+    border-radius : 20px;
+    text-align : center;
+    text-decoration : none;
+}
+footer ul a:hover, #gioco aside button:hover{
+    background-color: blue;
+}

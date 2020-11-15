@@ -39,16 +39,16 @@
 
 \ExplSyntaxOn
 
-\NewDocumentCommand{\htmlDual}{O{-s~A6} O{} O{} +v +v +v}{
+\NewDocumentCommand{\htmlDual}{O{-s~A6} O{} O{} O{html} +v +v +v}{
   \begin{columns}
     \begin{column}{.56\textwidth}
       \exp_args:Nx \scantokens{
-        \string\begin{minted}[#2]{html}\unexpanded\expandafter{#5}\string\end{minted}
+        \string\begin{minted}[#2]{#4}\unexpanded\expandafter{#6}\string\end{minted}
       }
     \end{column}
     \hfill
     \begin{column}{.42\textwidth}
-      \html@render[#1][width=\textwidth,#3]{#4#5#6}
+      \html@render[#1][width=\textwidth,#3]{#5#6#7}
     \end{column}
   \end{columns}
 }

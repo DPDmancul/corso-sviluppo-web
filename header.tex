@@ -31,7 +31,11 @@
 \beamertemplatenavigationsymbolsempty
 
 \def\sectionname{Sezione}
-\AtBeginSection{\frame{\transfade\sectionpage}}
+\makeatletter
+\newcommand\secmeme[1]{\def\sec@meme{\bigskip\includegraphics[height=.5\textheight]{img/meme/#1}}}
+\def\sec@meme{}
+\AtBeginSection{\frame{\transfade\centering\sectionpage\sec@meme}\def\sec@meme{}}
+\makeatother
 
 \newtheorem{exercise}{Esercizio}
 \theoremstyle{example}
@@ -48,7 +52,7 @@
 \newmintinline[mintsmallcss]{css}{fontsize=\small}
 \newmintinline[mintjs]{js}{}
 
-\title{Corso introduttivo allo sviluppo web}
+\title[Sviluppo web]{Corso introduttivo allo sviluppo web}
 \author{Davide Peressoni}
 \institute[]{Commissione Informatica\\Collegio Universitario don Nicola Mazza}
 \titlegraphic{\includegraphics[height=80px]{ComInfo}}

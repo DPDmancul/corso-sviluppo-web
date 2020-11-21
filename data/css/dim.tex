@@ -92,23 +92,6 @@ border: 5px solid green; /* scorciatoia */
   <p>Lorem ipsum <span>dolor sit</span> amen.</p>}
 \end{frame}
 
-\begin{frame}[fragile]{Centrare orizzontalmente col margine auotmatico}\transfade\centering
-  \htmlDual[-s A7][][trim={0 9cm 0 0},clip][css]{<style>}{
-#contenitore{ /*padre*/
-  border: 1px solid blue;
-}
-#contenuto{ /*figlio*/
-  border: 1px solid orange;
-  width: 200px;
-  margin: auto;
-}
-  }{
-  </style>
-  <div id="contenitore"><p id="contenuto">Lorem ipsum dolor sit amen.</p></div>}
-  \bigskip
-  Funziona solo per i \mintcss{#contenuto} che non sono \emph{inline}.\\
-\end{frame}
-
 \begin{frame}[fragile]{Imbottitura (padding)}\transfade\centering
   \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
  span{

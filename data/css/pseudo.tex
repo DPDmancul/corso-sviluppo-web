@@ -1,0 +1,139 @@
+% !TeX root = ../../Parte2.tex
+\section{Pseudoclassi}
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+        \htmlRender[-s A5][height=.70\textheight, trim={1cm 9cm 1cm 0},clip]{<meta charset="utf-8"><style>img{width:70px !important;height: 70px !important}</style>
+    <base href="../../memory/html">
+<style>
+body{
+    background-color: bisque;
+    text-align: center;
+}
+
+h1{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 40pt;
+    color: blue;
+}
+
+h1, h2, h3{
+    margin: 0;
+}
+
+.corretto{
+    color: green;
+}
+.errore{
+    color: red;
+}
+
+#gioco{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#tavolo{
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 15px;
+}
+
+#gioco aside{
+    margin: 20px;
+}
+
+#tavolo img{
+    height: 100px;
+    width: 100px;
+}
+
+footer ul li{
+    display: inline;
+    margin: 0 20px;
+}
+footer ul a, #gioco button{
+    background-color: brown;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+footer ul a, #gioco aside button{
+    background-color: blue;
+}
+</style>
+<header id="top">
+    <hgroup>
+        <h1> Memory </h1>
+        <h2> Fai la tua mossa </h2>
+    </hgroup>
+</header>
+
+<article id="gioco">
+<table id="tavolo">
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+  </table>
+
+<aside>
+    <section>
+        <h3 class="corretto"> Giusto </h3>
+        <h3 class="errore"> Sbagliato </h3>
+        <p> Tentativi: 0 </p>
+        <p> Giuste: 0 </p>
+    </section>
+
+    <button> Ricomincia </button>
+</aside>
+
+</article>
+
+<footer>
+    <ul>
+        <li> <a href="https://it.wikipedia.org/wiki/Memoria_(gioco)" target="_blank"> Informazioni sul gioco </a>
+        <li> <a href="#top"> Torna su </a>
+    </ul>
+</footer>}\\
+Link e pulsante blu al passaggio del mouse.
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{minted}[fontsize=\normalsize]{css}
+    footer ul a:hover, #gioco aside button:hover{
+        background-color: blue;
+    }
+    \end{minted}
+  \end{sol}
+\end{frame}

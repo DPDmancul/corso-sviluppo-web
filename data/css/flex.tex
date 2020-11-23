@@ -1,5 +1,222 @@
-\subsection{Flexbox}
+% !TeX root = ../../Parte2.tex
+\subsection[Flexbox]{Introduzione alle flexbox}
 
-\begin{frame}{Flex}\transfade\centering
+\begin{frame}[fragile]{Contenitore Flex}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip]{<style>*{visibility:hidden}div,section{visibility:visible}</style>}{
+<style>
+    #contenitore{
+        display: flex;
+        border: red solid;
+    }
+    #contenitore div{
+        padding: 5px;
+        margin:5px;
+        border: green solid;
+    }
+</style>
 
+...
+
+<section id="contenitore">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+</section>
+    }{}
+\end{frame}
+
+\begin{frame}[fragile]{Contenitori riga e colonna}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{ /* riga */
+    display: flex;
+    border: red solid;
+    flex-direction: row;
+}
+}{
+    #contenitore div{
+        padding: 5px;
+        margin:5px;
+        border: green solid;
+    }
+</style>
+
+<section id="contenitore">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+</section>
+    }
+  \htmlDual[-s A7][][trim={0 7cm 0 0},clip][css]{<style>}{
+#contenitore{ /* colonna */
+    display: flex;
+    border: red solid;
+    flex-direction: column;
+}
+}{
+      #contenitore div{
+          padding: 5px;
+          margin:5px;
+          border: green solid;
+      }
+  </style>
+
+  <section id="contenitore">
+      <div>A</div>
+      <div>B</div>
+      <div>C</div>
+  </section>
+      }
+\end{frame}
+
+\begin{frame}[fragile]{Responsive wrap}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    border: red solid;
+}
+}{
+    #contenitore div{
+        padding: 5px;
+        margin:5px;
+        border: green solid;
+    }
+</style>
+
+<section id="contenitore">
+<div>A</div>
+<div>B</div>
+<div>C</div>
+<div>D</div>
+<div>E</div>
+<div>F</div>
+<div>G</div>
+<div>H</div>
+<div>I</div>
+</section>
+    }
+  \htmlDual[-s A7][][trim={0 6cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    border: red solid;
+    flex-wrap: wrap;
+}
+}{
+      #contenitore div{
+          padding: 5px;
+          margin:5px;
+          border: green solid;
+      }
+  </style>
+
+  <section id="contenitore">
+  <div>A</div>
+<div>B</div>
+<div>C</div>
+<div>D</div>
+<div>E</div>
+<div>F</div>
+<div>G</div>
+<div>H</div>
+<div>I</div>
+<div>J</div>
+<div>K</div>
+<div>L</div>
+<div>M</div>
+<div>N</div>
+<div>O</div>
+<div>P</div>
+<div>Q</div>
+<div>R</div>
+<div>S</div>
+<div>T</div>
+<div>U</div>
+<div>V</div>
+<div>W</div>
+<div>X</div>
+<div>Y</div>
+<div>Z</div>
+  </section>
+      }
+\end{frame}
+
+\begin{frame}[fragile]{Allineamento principale semplice}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    border: red solid;
+    justify-content: center;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    border: red solid;
+    justify-content: flex-start;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    border: red solid;
+    justify-content: flex-end;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+\end{frame}
+
+\begin{frame}[fragile]{Allineamento principale con distanziamento}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    border: red solid;
+    justify-content: space-around;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    border: red solid;
+    justify-content: space-between;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+
+\htmlDual[-s A7][][trim={0 5cm 0 0},clip][css]{<style>}{
+  #contenitore{
+      display: flex;
+      border: red solid;
+      height: 200px;
+      flex-direction: column;
+      justify-content: space-around;
+  }
+  }{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+\end{frame}
+
+\begin{frame}[fragile]{Allineamento secondario}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    border: red solid;
+    height: 70px;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+    display: flex;
+    height: 70px;
+    align-items: center;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section style="border: red solid" id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+\htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+  display: flex;
+  height: 70px;
+  align-items: flex-start;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section style="border: red solid" id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
+\htmlDual[-s A7][][trim={0 8cm 0 0},clip][css]{<style>}{
+#contenitore{
+  display: flex;
+  height: 70px;
+  align-items: flex-end;
+}
+}{#contenitore div{padding: 5px;margin:5px;border: green solid;}</style><section style="border: red solid" id="contenitore"><div>A</div><div>B</div><div>C</div></section>}
 \end{frame}

@@ -1,0 +1,65 @@
+body{
+    background-color: bisque;
+    text-align: center;
+}
+
+h1{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 40pt;
+    color: blue;
+}
+
+h1, h2, h3{
+    margin: 0;
+}
+
+.corretto{
+    color: green;
+}
+.errore{
+    color: red;
+}
+
+.nascosto{
+    display: none;
+}
+
+#gioco{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tavolo{
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 15px;
+}
+
+#gioco aside{
+    margin: 20px;
+}
+
+#tavolo img{
+    height: 100px;
+    width: 100px;
+}
+
+footer ul li{
+    display: inline;
+    margin: 0 20px;
+}
+footer ul a, #gioco aside button{
+    background-color: brown;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+footer ul a:hover, #gioco aside button:hover{
+    background-color: blue;
+}

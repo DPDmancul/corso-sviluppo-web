@@ -35,11 +35,11 @@
 \makeatletter
 \newcommand\secmeme[1]{\def\sec@meme{\bigskip\includegraphics[height=.5\textheight]{img/meme/#1}}}
 \def\sec@meme{}
-\AtBeginSection{\frame{\transfade\centering\sectionpage\sec@meme}\def\sec@meme{}}
-\makeatother
-
+\def\sec@meme@print{\sec@meme\global\def\sec@meme{}}
+\AtBeginSection{\frame{\transfade\centering\sectionpage\sec@meme@print}}
 \def\subsectionname{Sottosezione}
-\AtBeginSubsection{\frame{\transfade\centering\subsectionpage}}
+\AtBeginSubsection{\frame{\transfade\centering\subsectionpage\sec@meme@print}}
+\makeatother
 
 \newtheorem{exercise}{Esercizio}
 \theoremstyle{example}

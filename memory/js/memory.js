@@ -120,6 +120,8 @@ function inizio(){
 
     // Disegna tavolo
     let tavolo = crea_tavolo(SIZE);
+    document.getElementById("corretto").classList.add("nascosto");
+    document.getElementById("errore").classList.add("nascosto");
     document.getElementById("tentativi").innerText = 0;
     document.getElementById("giuste").innerText = 0;
 

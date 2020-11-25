@@ -53,7 +53,7 @@ function crea_tavolo(size){
  * @param {number} num_coppie - Dimensione del tavolo da gioco.
  */
 function gestisci_click(elemento, tessere, info, num_coppie){
-    if(tessere.length == 2) // Ci sono già due tessere girate
+    if(tessere.length === 2) // Ci sono già due tessere girate
         return;
 
     tessere.push(elemento);
@@ -61,10 +61,10 @@ function gestisci_click(elemento, tessere, info, num_coppie){
     elemento.setAttribute("src", `img/${elemento.numero}.png`);
     elemento.setAttribute("alt", DESCRIZIONE[elemento.numero]);
 
-    if(tessere.length == 2){ // È la seconda tessera girata
+    if(tessere.length === 2){ // È la seconda tessera girata
         document.getElementById("tentativi").innerText = ++info.tentativi;
 
-        if(tessere[0].numero == tessere[1].numero){ // Corretto
+        if(tessere[0].numero === tessere[1].numero){ // Corretto
             document.getElementById("errore").classList.add("nascosto");
             document.getElementById("corretto").classList.remove("nascosto");
             document.getElementById("giuste").innerText = ++info.giuste;
@@ -72,7 +72,7 @@ function gestisci_click(elemento, tessere, info, num_coppie){
             // Svuota l'array delle tessere attuali
             tessere.length = 0
 
-            if (info.giuste == num_coppie){
+            if (info.giuste === num_coppie){
                 alert("Complimenti!");
                 inizio();
             }

@@ -8,6 +8,7 @@
 \usepackage[T1]{fontenc}
 
 \usepackage{lmodern,amsmath,amssymb,cclicenses,graphicx,subcaption,adjustbox,minted,tikz}
+\usepackage[normalem]{ulem}
 
 \input{html_renderer.tex}
 
@@ -47,7 +48,9 @@
 
 \def\itemtt[#1]{\item[\texttt{#1}]}
 
-\setminted{fontsize=\scriptsize}
+{\usebeamercolor[bg]{frametitle}}
+\colorlet{mintbg}{frametitle.bg}
+\setminted{fontsize=\scriptsize}%,bgcolor=mintbg}
 \setmintedinline{fontsize=\normalsize}
 \newmintinline[minthtml]{html}{}
 \newmintinline[minttag]{apacheconf}{}

@@ -81,7 +81,7 @@ function gestisci_click(elemento, tessere, info, num_coppie){
             document.getElementById("errore").classList.remove("nascosto");
 
             // Richiudi le tessere dopo 1 second0
-            window.setTimeout( () =>{
+            setTimeout( () =>{
                 tessere[0].setAttribute("src", "img/dorso.png");
                 tessere[0].setAttribute("alt", "Dorso");
                 tessere[0].selezionabile = true;

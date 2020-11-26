@@ -137,8 +137,34 @@ switch ( num ) {
   \end{minted}
 \end{frame}
 
-\begin{frame}{For}\transfade\centering
+\begin{frame}[fragile]{For}\transfade\centering
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{minted}[fontsize=\normalsize]{js}
+let a = [1,2,3];
+let i = 0;
+while(i < a.length){
+    console.log(a[i]);
+    ++i; // equivale a i+=1
+         //          e i=i+1
+}
+      \end{minted}
+    \end{column}
+    \pause
+    \begin{column}{.5\textwidth}
+      \begin{minted}[fontsize=\normalsize]{js}
+let a = [1,2,3];
+for(let i=0; i < a.length; ++i)
+    console.log(a[i]);
+      \end{minted}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}{For each}\transfade\centering
+\begin{frame}[fragile]{For of}\transfade\centering
+\begin{minted}[fontsize=\normalsize]{js}
+    let a = [1,2,3];
+    for(const e of a)
+        console.log(e);
+\end{minted}
 \end{frame}

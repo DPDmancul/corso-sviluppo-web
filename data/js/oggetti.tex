@@ -2,5 +2,49 @@
 \secmeme{js/js_aspirina}
 \section{Oggetti}
 \begin{frame}[fragile]{Oggetti}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    let utente = {
 
+        // Proprietà
+        nome: "Franco",
+        cognome: "Scaglia",
+
+        // Metodi
+        compleanno: () => {
+            const oggi = new Date();
+            const dd = oggi.getDate();
+            const mm = oggi.getMonth() + 1;
+
+            return `${dd}/${mm}`;
+        }
+    };
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Accedere alle proprietà}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    > utente.nome
+      "Franco"
+    > utente['nome']
+      "Franco"
+
+    > utente.nome_completo = function () {
+          return `${this.nome} ${this.cognome}`;
+      }
+    > utente.nome_completo()
+      "Franco Scaglia"
+  \end{minted}
+  \bigskip
+  \alert{Attenzione!} \mintjs{this} NON è disponibile se dichiariamo il metodo con una funzione a freccia.\\
+\end{frame}
+
+\begin{frame}[fragile]{For in}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    > let obj = { a: 1, b: 'a', c: [1,2,3] };
+    > for( p in obj )
+          console.log(p, obj[p]);
+      "a" 1
+      "b" "a"
+      "c" [ 1, 2, 3 ]
+  \end{minted}
 \end{frame}

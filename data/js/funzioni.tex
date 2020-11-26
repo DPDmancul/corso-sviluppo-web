@@ -2,5 +2,71 @@
 \secmeme{js/fun}
 \section{Funzioni}
 \begin{frame}[fragile]{Funzioni}\transfade\centering
+\begin{minted}[fontsize=\normalsize]{js}
+  function somma (a, b){
+      return a + b;
+  }
 
+  console.log( somma(1, -.5) ); // 0.5
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Parametri mancanti}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    function somma (a, b){
+        return a + b;
+    }
+
+    console.log( somma(1) ); // NaN : not a number
+  \end{minted}
+  \pause
+  \begin{minted}[fontsize=\normalsize]{js}
+    function somma (a, b){
+        if (b === undefined)
+            b = 0;
+        return a + b;
+    }
+
+    console.log( somma(1) ); // 1
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Modifica degli argomenti}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    function fun (a, b, c){
+        a = 0;
+        b = [];
+        c[0] = 0;
+        c.push(4);
+    }
+
+    let pippo = 1;
+    let pluto = [1,2,3];
+    let paperino = [1,2,3];
+
+    fun(pippo, pluto, paperino);
+
+    console.log(pippo);     // 1
+    console.log(pluto);     // [1,2,3]
+    console.log(paperino);  // [0,2,3,4]
+  \end{minted}
+  \bigskip
+  \begin{itemize}
+    \item Se riassegniamo un argomento la modifica avrà effetto solo nel corpo della funzione.
+    \item Se operiamo su un argomento la modifica avverrà anche fuori dal corpodella funzione.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni anonime (lambda)}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    const somma = function (a, b){
+        return a + b;
+    }
+  \end{minted}
+  \pause\bigskip
+  In alternativa, usando le \emph{funzioni a freccia}:
+  \begin{minted}[fontsize=\normalsize]{js}
+            const somma = (a, b) => a + b;
+// oppure:  const somma = (a, b) => {return a + b};
+\end{minted}
 \end{frame}

@@ -132,12 +132,13 @@ function inizio(){
     };
 
     // Gestione evento click
-    tavolo.map( (e, i) =>{
+    for(let i = 0; i < tavolo.length; ++i){
+        const e = tavolo[i];
         e.selezionabile = true;
         e.numero = board[i];
         e.onclick = () => {
             if(e.selezionabile)
                 gestisci_click(e, tessere_attuali, info, SIZE*SIZE/2);
         };
-    });
+    }
 }

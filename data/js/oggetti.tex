@@ -23,15 +23,15 @@
 
 \begin{frame}[fragile]{Accedere alle proprietà}\transfade\centering
   \begin{minted}[fontsize=\normalsize]{js}
-    > utente.nome
+    > utente.nome;
       "Franco"
-    > utente['nome']
+    > utente["nome"];
       "Franco"
 
     > utente.nome_completo = function () {
           return `${this.nome} ${this.cognome}`;
       }
-    > utente.nome_completo()
+    > utente.nome_completo();
       "Franco Scaglia"
   \end{minted}
   \bigskip

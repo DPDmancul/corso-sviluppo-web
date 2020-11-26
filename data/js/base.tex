@@ -101,10 +101,10 @@ let e = `Il totale è ${pippo} euro`; // interpolazione
     \pause\bigskip
     \begin{minted}[fontsize=\normalsize]{js}
   let a = Array(10); // Array di 10 elementi
-  let b = [1, 'a', 1.0]; // Array vuoto
+  let b = [1, 'a', 1.0]; // Array inizializzato
   let c = []; // Array vuoto
 
-  a[8] // elemento inposizione 8 (il nono) di a
+  a[8] // elemento in posizione 8 (il nono) di a
 > a[8];
   undefined
     \end{minted}
@@ -115,12 +115,12 @@ let e = `Il totale è ${pippo} euro`; // interpolazione
   []
 > a.length;       // Numero di elementi
   0
-> a.pushback(12); // Inserisci un elemento
+> a.push(12); // Inserisci un elemento
 > a;
   [12]
 > a.length;
   1
-> a.pushback('a');
+> a.push('a');
 > a;
   [12, 'a']
 > a.length;

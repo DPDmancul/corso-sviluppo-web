@@ -1,7 +1,9 @@
 "strict mode";
 
+/** Dimensoni del tavolo da gioco */
 const SIZE = 4;
 
+/** Descrizioni delle tessere. */
 const DESCRIZIONE = [
     "Cerchio",
     "Stella 5 punte",
@@ -13,13 +15,65 @@ const DESCRIZIONE = [
     "Stella 4 punte",
 ]
 
+
+/**
+ * @typedef {{
+ *    immagine: HTMLImageElement,
+ *    numero: number,
+ *    selezionabile: boolean
+ * }} Tessera
+ *
+ * @typedef {{
+ *    tentativi: number,
+ *    giuste: number
+ * }} Info
+ */
+
+
+/**
+ * Genera un tavolo da gioco casuale.
+ * @param {number} size - Dimensione del tavolo da gioco.
+ * @return {number[]} Contiene i numeri associati alle tessere del tavolo da gioco.
+ */
+function genera_numeri_tessere(size){
+    /**
+     * Il tavolo da gioco sarà rappresentato da un array conenetente tutte le righe una dopo l'altra
+     * @type number[]
+     */
+    let board = new Array(size*size);
+
+    // Riempie il tavolo da gioco
+    for(let i = 0; i < SIZE*SIZE; ++i)
+        // Dividendo per due otteniamo coppie di numeri:
+        // [0,0,1,1,2,2,...]
+        board[i] = Math.floor(i/2);
+
+    // Mescola il tavolo da gioco
+    // Alogoritmo Fisher-Yates, variante di Knuth
+    for(let i = SIZE*SIZE-1; i > 0; --i){
+        const j = Math.floor(Math.random() * i);
+        // Scambia gli elementi in posizione i e j
+        [board[i], board[j]] = [board[j], board[i]];
+    }
+
+    return board;
+}
+
 /**
  * Crea il tavolo da gioco nella pagina HTML.
  * @param {number} size - Dimensione del tavolo da gioco.
- * @return {HTMLImageElement[]} Contiene gli elementi `img` che compongono il tavolo da gioco, ordinati.
+ * @return {Tessera[]} Contiene le tessere del tavolo da gioco.
  */
 function crea_tavolo(size){
+
+    const board = genera_numeri_tessere(size);
+
     let tavolo_html = document.getElementById('tavolo');
+
+    /**
+     * Tessere del tavolo da gioco
+     * @type Tessera[]
+     */
     let tavolo = [];
 
     // Svuota il tavoo da gioco
@@ -34,7 +88,11 @@ function crea_tavolo(size){
             immagine.setAttribute("src", "img/dorso.png");
             immagine.setAttribute("alt", "Dorso");
 
-            tavolo.push(immagine);
+            tavolo.push({
+                immagine: immagine,
+                numero: board[ i * size + j ],
+                selezionabile: true
+            });
 
             cella.appendChild(immagine);
             riga.appendChild(cella);
@@ -47,9 +105,9 @@ function crea_tavolo(size){
 
 /**
  * Gestisce l'evento click su un'`img` selezionabile del tavolo.
- * @param {HTMLImageElement} elemento - Elemento su cui è avvenuto il click.
- * @param {HTMLImageElement[]} tessere - Contiene gli elementi delle tessere precedentemente scoperte.
- * @param {{tentativi: number, giuste: number}} info - Contiene il numero di tenativi e di abbinamenti corretti.
+ * @param {Tessera} elemento - Elemento su cui è avvenuto il click.
+ * @param {Tessera[]} tessere - Contiene gli elementi delle tessere precedentemente scoperte.
+ * @param {Info} info - Contiene il numero di tenativi e di abbinamenti corretti.
  * @param {number} num_coppie - Dimensione del tavolo da gioco.
  */
 function gestisci_click(elemento, tessere, info, num_coppie){
@@ -58,8 +116,8 @@ function gestisci_click(elemento, tessere, info, num_coppie){
 
     tessere.push(elemento);
     elemento.selezionabile = false;
-    elemento.setAttribute("src", `img/${elemento.numero}.png`);
-    elemento.setAttribute("alt", DESCRIZIONE[elemento.numero]);
+    elemento.immagine.setAttribute("src", `img/${elemento.numero}.png`);
+    elemento.immagine.setAttribute("alt", DESCRIZIONE[elemento.numero]);
 
     if(tessere.length === 2){ // È la seconda tessera girata
         document.getElementById("tentativi").innerText = ++info.tentativi;
@@ -80,19 +138,16 @@ function gestisci_click(elemento, tessere, info, num_coppie){
             document.getElementById("corretto").classList.add("nascosto");
             document.getElementById("errore").classList.remove("nascosto");
 
-            // Richiudi le tessere dopo 1 second0
+            // Richiudi le tessere dopo 1 secondo
             setTimeout( () =>{
-                tessere[0].setAttribute("src", "img/dorso.png");
-                tessere[0].setAttribute("alt", "Dorso");
-                tessere[0].selezionabile = true;
-
-                tessere[1].setAttribute("src", "img/dorso.png");
-                tessere[1].setAttribute("alt", "Dorso");
-                tessere[1].selezionabile = true;
-
+                for(let t of tessere){
+                    t.immagine.setAttribute("src", "img/dorso.png");
+                    t.immagine.setAttribute("alt", "Dorso");
+                    t.selezionabile = true;
+                }
                 // Svuota l'array delle tessere attuali
                 tessere.length = 0
-            }, 1000);
+            }, 1000 /* ms */);
         }
     }
 }
@@ -101,44 +156,34 @@ function gestisci_click(elemento, tessere, info, num_coppie){
  * Avvia una nuova partita.
  */
 function inizio(){
-    // Il tavolo da gioco sarà rappresentato da un array conenetente tutte le righe una dopo l'altra
-    let board = new Array(SIZE*SIZE);
-
-    // Riempie il tavolo da gioco
-    for(let i = 0; i < SIZE*SIZE; ++i)
-        // Dividendo per due otteniamo coppie di numeri:
-        // [0,0,1,1,2,2,...]
-        board[i] = Math.floor(i/2);
-
-    // Mescola il tavolo da gioco
-    // Alogoritmo Fisher-Yates, variante di Knuth
-    for(let i = SIZE*SIZE-1; i > 0; --i){
-        const j = Math.floor(Math.random() * i);
-        // Scambia gli elementi in posizione i e j
-        [board[i], board[j]] = [board[j], board[i]];
-    }
-
-    // Disegna tavolo
+    // Crea e disegna tavolo
     let tavolo = crea_tavolo(SIZE);
+
+    // Inizializza elementi HTML
     document.getElementById("corretto").classList.add("nascosto");
     document.getElementById("errore").classList.add("nascosto");
     document.getElementById("tentativi").innerText = 0;
     document.getElementById("giuste").innerText = 0;
 
+    /**
+     * Contiene le tessere girate in questa mano di gioco.
+     * @type Tessera[]
+     */
     let tessere_attuali = [];
+
+    /**
+     * Contiene le informazioni sulla partita.
+     * @type Info
+     */
     let info = {
         tentativi: 0,
         giuste: 0
     };
 
     // Gestione evento click
-    for(let i = 0; i < tavolo.length; ++i){
-        const e = tavolo[i];
-        e.selezionabile = true;
-        e.numero = board[i];
-        e.onclick = () => {
+    for(let e of tavolo)
+        e.immagine.onclick = () => {
             if(e.selezionabile)
                 gestisci_click(e, tessere_attuali, info, SIZE*SIZE/2);
         };
-    }
 }

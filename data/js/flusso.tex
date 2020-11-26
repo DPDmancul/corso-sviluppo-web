@@ -1,0 +1,144 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/equal}
+\section{Strutture di controllo}
+\begin{frame}[fragile]{Operatori di comparazione}\transfade\centering
+  \begin{description}
+    \item[\mintjs{==}] Uguaglianza (stesso valore)
+    \item[\mintjs{===}] Uguaglianza stretta (anche stesso tipo)\smallskip
+\begin{minted}{js}
+> 1 == "1"
+  true
+> 1 === "1"
+  false
+\end{minted}
+    \pause\smallskip
+    \item[\mintjs{!=}] Disuguaglianza
+    \item[\mintjs{!==}] Disuguaglianza stretta
+    \pause\smallskip
+    \item[\mintjs{>}] Maggiore
+    \item[\mintjs{>=}] Maggiore o uguale
+    \item[\mintjs{<}] Minore
+    \item[\mintjs{<=}] Minore o uguale
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Operatori logici}\transfade\centering
+  \begin{description}[<+->]
+    \item[\mintjs{&&}] Congiunzione logica (\emph{et}, \emph{and}, $\land$)\\\smallskip
+\begin{minipage}{.3\linewidth}
+\begin{minted}{js}
+> false && false
+  false
+> false && true
+  false
+\end{minted}
+\end{minipage}
+\begin{minipage}{.3\linewidth}
+\begin{minted}{js}
+> true && false
+  false
+> true && true
+  true
+\end{minted}
+\end{minipage}\smallskip
+    \item[\mintjs{||}] Disgiunzione inclusiva (\emph{vel}, \emph{or}, $\lor$)\\\smallskip
+\begin{minipage}{.3\linewidth}
+\begin{minted}{js}
+> false || false
+  false
+> false || true
+  true
+\end{minted}
+\end{minipage}
+\begin{minipage}{.3\linewidth}
+\begin{minted}{js}
+> true || false
+  true
+> true || true
+  true
+\end{minted}
+\end{minipage}\smallskip
+    \item[\mintjs{!}] Negazione logica o complemento logico (\emph{not}, $\lnot$)\smallskip
+\begin{minted}{js}
+> !false
+  true
+> !true
+  false
+\end{minted}
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{If}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    if ( /* condizione */ ) {
+        // codice eseguito solo se la condizine è vera
+    } else {
+        // codice eseguito solo se la condizine è falsa
+    }
+  \end{minted}
+  \pause\bigskip
+  La clausola \mintjs{else{}} è opzionale.
+  \begin{minted}[fontsize=\normalsize]{js}
+    if ( a%2 == 0 )
+        console.log(`${a} è pari`);
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Switch}\transfade\centering
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{minted}[fontsize=\normalsize]{js}
+if ( num === 0 )
+    console.log("zero");
+else if ( num === 1 )
+    console.log("uno");
+else if ( num === 2 )
+    console.log("due");
+else
+    console.log("altro");
+      \end{minted}
+    \end{column}
+    \pause
+    \begin{column}{.5\textwidth}
+      \begin{minted}[fontsize=\normalsize]{js}
+switch ( num ) {
+    case 0:
+        console.log("zero");
+        break;
+    case 1:
+        console.log("uno");
+        break;
+    case 2:
+        console.log("due");
+        break;
+    default:
+        console.log("altro");
+}
+      \end{minted}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{While e do-while}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    while ( /* condizione */ ) {
+        // codice eseguito a ripetizione
+        // finché la condizione è vera
+    }
+  \end{minted}
+  Se la condizione inizialmente è falsa il codice non viene mai eseguito.
+  \pause\bigskip
+  \begin{minted}[fontsize=\normalsize, breaklines]{js}
+    do {
+        // codice eseguito a ripetizione
+        // finché la condizione è vera,
+        // ma comuqnue almeno una volta
+    } while ( /* condizione */ );
+  \end{minted}
+\end{frame}
+
+\begin{frame}{For}\transfade\centering
+\end{frame}
+
+\begin{frame}{For each}\transfade\centering
+\end{frame}

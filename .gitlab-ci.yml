@@ -11,16 +11,16 @@ compile:
     - apt-get update
     - apt-get install -y wkhtmltopdf
   script:
-    - mkdir show
+    - mkdir slides
     - mkdir print
 
     - ./make.sh
-    - mv Parte*.pdf show
+    - mv Parte*.pdf slides
 
     - sed -i -re '1,1 s/(]\{beamer\})/,handout\1/g' header.tex
     - ./make.sh
     - mv Parte*.pdf print
   artifacts:
     paths:
-      - show/*.pdf
+      - slides/*.pdf
       - print/*.pdf

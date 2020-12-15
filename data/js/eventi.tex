@@ -1,0 +1,25 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/event}
+\section[Eventi]{Eventi HTML}
+\begin{frame}{Tipi di evento}\transfade\centering
+  \begin{description}
+    \item[onclick] Al click sull'elemento HTML.
+    \item[onmouseover] Quando il mouse passa sopra l'elemento.
+    \item[onmouseout] Quando il mouse si sposta dall'elemento.
+    \item[onkeydown] Quando viene premuto un tasto della tastiera (si usa negli \minttag{input}).
+    \item[onload] Al caricamento dell'elemento (si usa nel \minttag{body}).
+    \item[onchange] Quando un elemento viene cambiato (si usa negli \minttag{input}).
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Registrare un evento}\transfade\centering
+  \begin{itemize}[<+->]
+    \item Da HTML\\
+      \minthtml{<button onclick="alert('Mi hai premuto!')">Premimi</button> }
+    \item Da JS\\
+      \minthtml{<button id="pulsante">Premimi</button> }\\\dots\\
+      \begin{minted}[breaklines]{js}
+document.getElementById("pulsante").onclick = () => alert("Mi hai premuto!");
+      \end{minted}
+  \end{itemize}
+\end{frame}

@@ -1,0 +1,86 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/dom}
+\section[DOM]{DOM\\Document Object Model}
+\begin{frame}{Ottenere un elemento}\transfade\centering
+  \begin{itemize}
+    \item\mintjs{document.getElementById("pippo") // Singolo elemento}\\\smallskip
+      \minthtml[fontsize=\scriptsize]{<span id="pippo"></span>}\bigskip
+    \item\mintjs{document.getElementsByClassName("pluto") // Array di elementi}\\\smallskip
+      \minthtml[fontsize=\scriptsize]{<span class="pluto"></span>}, \minthtml[fontsize=\scriptsize]{<a class="pluto"></a>}\bigskip
+    \item\mintjs{document.getElementsByName("paperino") // Array di elementi}\\\smallskip
+      \minthtml[fontsize=\scriptsize]{<input name="paperino"></input>}, \minthtml[fontsize=\scriptsize]{<input name="paperino"></input>}\bigskip
+    \item\mintjs{document.getElementsByTagName("p") // Array di elementi}\\\smallskip
+      \minthtml[fontsize=\scriptsize]{<p></p>}, \minthtml[fontsize=\scriptsize]{<p id="topolino"></p>}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Leggere e modificare il contenuto}\transfade\centering
+  Leggere il contenuto:
+  \begin{minted}[fontsize=\normalfont]{js}
+    > let p = document.getElementById("testo");
+    > console.log( p.innerHTML );
+      "testo originale"
+  \end{minted}
+  \pause\bigskip
+  Modificare il contenuto:
+  \begin{minted}[fontsize=\normalfont]{js}
+      let p = document.getElementById("testo");
+      p.innerHTML = "Testo modificato";
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Leggere e modificare gli attributi}\transfade\centering
+  Leggere un attributo:
+  \begin{minted}[fontsize=\normalfont]{js}
+    > let a = document.getElementById("ancora");
+    > console.log( a.href );
+      "http://duckduckgo.com"
+  \end{minted}
+  \pause\bigskip
+  Modificare un attributo:
+  \begin{minted}[fontsize=\normalfont]{js}
+      let a = document.getElementById("ancora");
+      a.setAttribute("href", "https://duckduckgo.com");
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Cambiare la classe di un elemento}\transfade\centering
+  \begin{minted}[fontsize=\normalfont]{js}
+    let pluto = document.getElementById("Pluto");
+
+    // Aggiungi una nuova classe all'elemento
+    pluto.classList.add("Pippo");
+
+    // Rimuovi una classe dall'elemento
+    pluto.classList.remove("Paperino");
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Creare un nuovo elemento}\transfade\centering
+  \begin{minted}[fontsize=\normalfont]{js}
+    let p = document.createElement("p"); // Creo un paragrafo
+
+    p.innerHTML = "Testo"; // Inserisco il testo nel paragrafo
+    p.classList.add("testo-bello"); // Aggiungo una classe
+    p.setAttribute("id", "testo-js"); // Imposto l'id
+
+    let contenitore = document.getElementById("contenitore");
+
+    contenitore.appendChild(p); /* Inserisco il paragrafo
+                                   nel contenitore */
+  \end{minted}
+  \bigskip
+  \begin{tabular}{m{.3\textwidth} m{.1\textwidth} m{.4\textwidth}}
+    \minthtml[fontsize=\scriptsize]{<div id="contenitore"></div>} &$\to$&\hspace*{-1cm}
+    \begin{minipage}{\columnwidth}
+      \begin{minted}{html}
+<div id="contenitore">
+    <p class="testo-bello" id="testo-js">
+        Testo
+    </p>
+</div>
+      \end{minted}
+    \end{minipage}
+  \end{tabular}
+\end{frame}

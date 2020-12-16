@@ -21,9 +21,7 @@
   \end{minted}
   \pause\bigskip
   \begin{minted}[fontsize=\normalsize]{js}
-    function somma (a, b){
-        if (b === undefined)
-            b = 0;
+    function somma (a, b = 0){
         return a + b;
     }
 

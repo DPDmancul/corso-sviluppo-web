@@ -13,7 +13,7 @@ const DESCRIZIONE = [
     "Fumetto",
     "Freccia",
     "Stella 4 punte",
-]
+];
 
 
 /**
@@ -37,20 +37,20 @@ const DESCRIZIONE = [
  */
 function genera_numeri_tessere(size){
     /**
-     * Il tavolo da gioco sarà rappresentato da un array conenetente tutte le righe una dopo l'altra
+     * Il tavolo da gioco sarà rappresentato da un array contenente tutte le righe una dopo l'altra
      * @type number[]
      */
     let board = new Array(size*size);
 
     // Riempie il tavolo da gioco
-    for(let i = 0; i < SIZE*SIZE; ++i)
+    for(let i = 0; i < size*size; ++i)
         // Dividendo per due otteniamo coppie di numeri:
         // [0,0,1,1,2,2,...]
         board[i] = Math.floor(i/2);
 
     // Mescola il tavolo da gioco
     // Alogoritmo Fisher-Yates, variante di Knuth
-    for(let i = SIZE*SIZE-1; i > 0; --i){
+    for(let i = size*size-1; i > 0; --i){
         const j = Math.floor(Math.random() * i);
         // Scambia gli elementi in posizione i e j
         [board[i], board[j]] = [board[j], board[i]];
@@ -108,7 +108,7 @@ function crea_tavolo(size){
  * @param {Tessera} elemento - Elemento su cui è avvenuto il click.
  * @param {Tessera[]} tessere - Contiene gli elementi delle tessere precedentemente scoperte.
  * @param {Info} info - Contiene il numero di tenativi e di abbinamenti corretti.
- * @param {number} num_coppie - Dimensione del tavolo da gioco.
+ * @param {number} num_coppie - Numero di coppie totali.
  */
 function gestisci_click(elemento, tessere, info, num_coppie){
     if(tessere.length === 2) // Ci sono già due tessere girate

@@ -168,3 +168,71 @@ for(let i=0; i < a.length; ++i)
         console.log(e);
 \end{minted}
 \end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \begin{enumerate}
+      \item Riempire il tavolo da gioco (\texttt{board}) con coppie di numeri $0,0,1,1,2,2,\dots$.
+      \item Mescolare il tavolo da gioco con
+      \begin{algorithm}[H]\normalfont\small
+        \TitleOfAlgo{Fisher-Yates, variante di Knuth}
+        \KwIn{Vettore V di N elementi da mescolare}
+        \KwOut{Vettore V mescolato}
+        \For{$i\leftarrow N-1$ \KwTo $0$}{
+          j $\leftarrow \lfloor$ random()$\cdot$ i $\rfloor$ \tcp*{in JS \mintjs{Math.floor(Math.random() * i})~~}
+          [V[i], V[j]] = [V[j], V[i]] \tcp*{Scambia elementi in posizione i e j~~}
+        }
+      \end{algorithm}
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+      \item Riempire il tavolo da gioco (\texttt{board}) con coppie di numeri $0,0,1,1,2,2,\dots$.
+      \begin{minted}{js}
+        // Riempie il tavolo da gioco
+        for(let i = 0; i < SIZE*SIZE; ++i)
+            // Dividendo per due otteniamo coppie di numeri:
+            // [0,0,1,1,2,2,...]
+            board[i] = Math.floor(i/2);
+      \end{minted}
+    \item Mescolare il tavolo da gioco con
+      \begin{algorithm}[H]\normalfont\small
+        \For{$i\leftarrow N-1$ \KwTo $0$}{
+          j $\leftarrow \lfloor$ random()$\cdot$ i $\rfloor$\;
+          [V[i], V[j]] = [V[j], V[i]]\;
+        }
+      \end{algorithm}{\scriptsize
+        V = \texttt{board}; N = \texttt{SIZE*SIZE}
+      }
+      \begin{columns}
+        \begin{column}{.4\textwidth}
+\begin{minted}[fontsize=\tiny]{js}
+// Mescola il tavolo da gioco
+// Alogoritmo Fisher-Yates, variante di Knuth
+for(let i = SIZE*SIZE-1; i > 0; --i){
+    const j = Math.floor(Math.random() * i);
+    // Scambia gli elementi in posizione i e j
+    [board[i], board[j]] = [board[j], board[i]];
+}
+\end{minted}
+        \end{column}
+        \begin{column}{.4\textwidth}
+\begin{minted}[fontsize=\tiny]{js}
+// Equivalentemente
+for(let i = SIZE*SIZE-1; i > 0; --i){
+    const j = Math.floor(Math.random() * i);
+    let temp = board[i];
+    board[i] = board[j];
+    board[j] = temp;
+}
+\end{minted}
+        \end{column}
+      \end{columns}
+    \end{enumerate}
+  \end{sol}
+\end{frame}

@@ -48,3 +48,57 @@
       "c" [ 1, 2, 3 ]
   \end{minted}
 \end{frame}
+
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    Creare funzione \mintjs{crea_tavolo(size)} che dato un tavolo \mintjs{board = genera_numeri_tessere(size)} ritorna un vettore di oggetti rappresentanti una tessera:
+    \begin{minted}{js}
+{
+  immagine: [i,j],    // coordinate della tessera nel tavolo
+  numero: board[k],   // numero dell'immagine della tessera
+  selezionabile: true // la cella è coperta, e quindi selezionabile
+}
+    \end{minted}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+      \begin{minted}[fontsize=\tiny]{js}
+/**
+ * @typedef {{
+ *    immagine: number[],
+ *    numero: number,
+ *    selezionabile: boolean
+ * }} Tessera
+ */
+
+/**
+ * Crea il tavolo da gioco nella pagina HTML.
+ * @param {number} size - Dimensione del tavolo da gioco.
+ * @return {Tessera[]} Contiene le tessere del tavolo da gioco.
+ */
+function crea_tavolo(size){
+    const board = genera_numeri_tessere(size);
+    /**
+     * Tessere del tavolo da gioco
+     * @type Tessera[]
+     */
+    let tavolo = [];
+    for(let i = 0; i < size; ++i){
+        for (let j = 0; j < size; ++j){
+            tavolo.push({
+                immagine: [i,j],
+                numero: board[ i * size + j ],
+                selezionabile: true
+            });
+        }
+    }
+    return tavolo;
+}
+      \end{minted}
+  \end{sol}
+\end{frame}

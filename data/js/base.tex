@@ -69,7 +69,7 @@ let e = `Il totale è ${pippo} euro`; // interpolazione
   \bigskip
   Come scrivere l'accento grave (\texttt{\`}):
   \begin{description}
-    \item[Linux] \texttt{AltGr} + \texttt{\'}
+    \item[Linux] \texttt{AltGr} + \texttt{\textquotesingle}
     \item[Windows\footnote{Dal tastierino numerico.}] \texttt{Alt} + \texttt{96}
     \item[macOS\footnote{In alcuni computer potrebbe essere necessario digitare uno spazio dopo questa combinazione di tasti.}] \texttt{AltGr} + \texttt{\textbackslash} o \texttt{AltGr} + \texttt{9}
   \end{description}
@@ -131,4 +131,57 @@ let e = `Il totale è ${pippo} euro`; // interpolazione
 > a.length;
   2
     \end{minted}
+\end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}\transfade
+  \begin{exercise}\centering
+    \begin{enumerate}
+      \item Creare un array con le descrizioni delle immagini.
+      \item Allocare un vettore (\texttt{board}) per contenere le 16 ($4\times4$) caselle.
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \texttt{memory.html}:
+    \mint{html}{<script src="memory.js"></script>}
+    \begin{enumerate}
+      \item Creare un array con le descrizioni delle immagini.
+      \begin{minted}{js}
+        /** Descrizioni delle tessere. */
+        const DESCRIZIONE = [
+            "Cerchio",
+            "Stella 5 punte",
+            "Cuore",
+            "Fulmine",
+            "Triangolo",
+            "Fumetto",
+            "Freccia",
+            "Stella 4 punte",
+        ];
+      \end{minted}
+    \end{enumerate}
+  \end{sol}
+\end{frame}
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+    \setcounter{enumi}{1}
+      \item Allocare un vettore (\texttt{board}) per contenere le 16 ($4\times4$)
+      \begin{minted}[breaklines]{js}
+        /** Dimensoni del tavolo da gioco */
+        const SIZE = 4;
+
+        /**
+         * Il tavolo da gioco sarà rappresentato da un array contenente
+         * tutte le righe una dopo l'altra
+         * @type number[]
+         */
+        let board = new Array(SIZE*SIZE);
+      \end{minted}
+    \end{enumerate}
+  \end{sol}
 \end{frame}

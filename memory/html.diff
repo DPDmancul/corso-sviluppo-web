@@ -1,0 +1,10 @@
+7a8
+>         <script src="memory.js"></script>
+10c11
+<     <body>
+---
+>     <body onload="inizio()">
+55c32
+<                 <button> Ricomincia </button>
+---
+>                 <button onclick="inizio()"> Ricomincia </button>

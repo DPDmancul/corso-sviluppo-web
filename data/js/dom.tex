@@ -84,3 +84,167 @@
     \end{minipage}
   \end{tabular}
 \end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}\transfade
+  \begin{exercise}\centering
+    \begin{enumerate}
+      \item Modificare la funzione \mintjs{crea_tavolo} di modo che crei anche il tavolo nella pagina HTML e restituisca anziché \texttt{[i,j]} l'elemento \texttt{img} corrispondente.
+      \item Creare una funzione \mintjs{gestisci_click(elemento, tessere, info, num_coppie)} dove \texttt{elemento} è l'elemento \texttt{img} cliccato, \texttt{tessere} è un array contenente le tessere attualmente scoperte (esclusa quella girata e quelle già indovinate, di conseguenza il vettore conterrà zero o una tessera), \texttt{info} è un oggetto \mintjs{{tenativi, giuste}}, \texttt{num\_coppie} il numero totale di coppie di tessere.\\
+      Deve "girare" la tessere nell'HTML, verificare se è stata fatta una coppia (e di conseguenza incrementare il numero di tentativi e, in caso, di coppie giuste; se tutte le tessere sono state abbinate congratularsi col giocatore) e, se già due tessere sono state scoperte, rigirarle dopo qualche secondo (utilizzare \mintjs{setTimeout(callback, millisec)}).
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+      \item
+
+      \begin{multicols}{2}
+\begin{minted}[fontsize=\tiny]{js}
+/**
+ * @typedef {{
+ *    immagine: HTMLImageElement,
+ *    numero: number,
+ *    selezionabile: boolean
+ * }} Tessera
+ */
+
+/**
+ * Crea il tavolo da gioco nella pagina HTML.
+ * @param {number} size - Dimensione del tavolo da gioco.
+ * @return {Tessera[]} Contiene le tessere del tavolo da gioco.
+ */
+function crea_tavolo(size){
+
+  const board = genera_numeri_tessere(size);
+
+  let tavolo_html = document.getElementById('tavolo');
+
+  /**
+   * Tessere del tavolo da gioco
+   * @type Tessera[]
+   */
+  let tavolo = [];
+
+  // Svuota il tavoo da gioco
+  tavolo_html.innerHTML = "";
+
+  for(let i = 0; i < size; ++i){
+      let riga = document.createElement("tr");
+      for (let j = 0; j < size; ++j){
+          let cella = document.createElement("td");
+          let immagine = document.createElement("img");
+
+          immagine.setAttribute("src", "img/dorso.png");
+          immagine.setAttribute("alt", "Dorso");
+
+          tavolo.push({
+              immagine: immagine,
+              numero: board[ i * size + j ],
+              selezionabile: true
+          });
+
+          cella.appendChild(immagine);
+          riga.appendChild(cella);
+      }
+      tavolo_html.appendChild(riga);
+  }
+
+  return tavolo;
+}
+      \end{minted}
+      \end{multicols}
+    \end{enumerate}
+  \end{sol}
+\end{frame}
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+    \setcounter{enumi}{1}
+      \item memory.css
+      \begin{minted}{css}
+.nascosto{
+    display: none;
+}
+      \end{minted}
+      memory.html
+      \begin{minted}{html}
+<h3 id="corretto" class="corretto nascosto"> Giusto </h3>
+<h3 id="errore" class="errore nascosto"> Sbagliato </h3>
+<p> Tentativi: <span id="tentativi">0</span> </p>
+<p> Giuste: <span id="giuste">0</span> </p>
+      \end{minted}
+    \end{enumerate}
+  \end{sol}
+\end{frame}
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+\begin{minted}[fontsize=\tiny]{js}
+/**
+ * @typedef {{
+ *    tentativi: number,
+ *    giuste: number
+ * }} Info
+ */
+
+/**
+ * Gestisce l'evento click su un'`img` selezionabile del tavolo.
+ * @param {Tessera} elemento - Elemento su cui è avvenuto il click.
+ * @param {Tessera[]} tessere - Contiene gli elementi delle tessere precedentemente scoperte.
+ * @param {Info} info - Contiene il numero di tenativi e di abbinamenti corretti.
+ * @param {number} num_coppie - Numero di coppie totali.
+ */
+function gestisci_click(elemento, tessere, info, num_coppie){
+    if(tessere.length === 2) // Ci sono già due tessere girate
+        return;
+
+    tessere.push(elemento);
+    elemento.selezionabile = false;
+    elemento.immagine.setAttribute("src", `img/${elemento.numero}.png`);
+    elemento.immagine.setAttribute("alt", DESCRIZIONE[elemento.numero]);
+
+      \end{minted}
+      \dots
+  \end{sol}
+\end{frame}
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering\dots
+\begin{minted}[fontsize=\tiny]{js}
+    if(tessere.length === 2){ // È la seconda tessera girata
+        document.getElementById("tentativi").innerText = ++info.tentativi;
+
+        if(tessere[0].numero === tessere[1].numero){ // Corretto
+            document.getElementById("errore").classList.add("nascosto");
+            document.getElementById("corretto").classList.remove("nascosto");
+            document.getElementById("giuste").innerText = ++info.giuste;
+
+            // Svuota l'array delle tessere attuali
+            tessere.length = 0
+
+            if (info.giuste === num_coppie){
+                alert("Complimenti!");
+                inizio();
+            }
+        }else{ // Errore
+            document.getElementById("corretto").classList.add("nascosto");
+            document.getElementById("errore").classList.remove("nascosto");
+
+            // Richiudi le tessere dopo 1 secondo
+            setTimeout( () =>{
+                for(let t of tessere){
+                    t.immagine.setAttribute("src", "img/dorso.png");
+                    t.immagine.setAttribute("alt", "Dorso");
+                    t.selezionabile = true;
+                }
+                // Svuota l'array delle tessere attuali
+                tessere.length = 0
+            }, 1000 /* ms */);
+        }
+    }
+}
+      \end{minted}
+  \end{sol}
+\end{frame}

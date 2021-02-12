@@ -1,0 +1,80 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/validation}
+\section[Form]{Gestione dei form}
+
+\begin{frame}[fragile]{Validazione}\transfade\centering
+  \begin{minted}{html}
+<form name="login" onsubmit="return valida_form()">
+  <input type="text" name="user" placeholder="Username">
+  <input type="submit" value="Registrati">
+</form>
+
+<script>
+  function valida_form() {
+    const user = document.forms["login"]["user"].value;
+    if (user.length < 4) {
+      alert("L'username deve avere almeno 4 caratteri.");
+      return false;
+    }
+    return true; // Questo per i vecchi form:
+                 // con le fetch API si mette sempre `return false`
+  }
+</script>
+  \end{minted}
+  \pause\par
+  \alert{Attenzione!} I controlli lato client possono essere facilmente bypassati: servono solo a dare un feedback all'utente e vanno rifatti lato server per garantire la sicurezza del sistema.\\
+\end{frame}
+
+\begin{frame}[fragile]{Invio di un form con fetch API}\transfade\centering
+  \begin{minted}{html}
+<form name="login" onsubmit="return invia_form()">
+  <input type="text" name="user" placeholder="Username">
+  <input type="submit" value="Registrati">
+</form>
+
+<script>
+  function invia_form() {
+    //eventuale validazione
+
+    const dati = new FormData(document.forms["login"]);
+
+    fetch("https://mio_backedn.local/", {
+        method: "POST",
+        body: dati, // Invia il form
+    })
+    .then(rispsota => rispsota.text())
+    .then(testo => console.log(testo));
+
+    return false; // Non usare il vecchio sistema di invio form
+  }
+</script>
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Invio di un form in JSON con fetch API}\transfade\centering
+  \begin{minted}{html}
+<form name="login" onsubmit="return invia_form()">
+  <input type="text" name="user" placeholder="Username">
+  <input type="submit" value="Registrati">
+</form>
+
+<script>
+  function invia_form() {
+    //eventuale validazione
+
+    const dati = new FormData(document.forms["login"]); // FormData
+    const dati_obj = Object.fromEntries(dati); // Oggetto
+
+    fetch("https://mio_backedn.local", {
+        method: "POST",
+        headers: {"Content-Type" : 'application/json'},
+        body: JSON.stringify(dati_obj),  // Invia il form come JSON
+    })
+    .then(rispsota => rispsota.json())
+    .then(obj => console.log(obj));
+
+    return false; // Non usare il vecchio sistema di invio form
+  }
+</script>
+  \end{minted}
+\end{frame}

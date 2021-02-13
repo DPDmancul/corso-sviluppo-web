@@ -181,7 +181,7 @@ for(let i=0; i < a.length; ++i)
         \KwIn{Vettore V di N elementi da mescolare}
         \KwOut{Vettore V mescolato}
         \For{$i\leftarrow N-1$ \KwTo $0$}{
-          j $\leftarrow \lfloor$ random()$\cdot$ i $\rfloor$ \tcp*{in JS \mintjs{Math.floor(Math.random() * i})~~}
+          j $\leftarrow$ intero random $\colon$ 0 $\leqslant$ j < i \tcp*{ovvero $\lfloor$ random($[0,1)$)$\cdot$ i $\rfloor$~~\\in JS \mintjs{Math.floor(Math.random() * i})~~}
           [V[i], V[j]] = [V[j], V[i]] \tcp*{Scambia elementi in posizione i e j~~}
         }
       \end{algorithm}
@@ -203,7 +203,7 @@ for(let i=0; i < a.length; ++i)
     \item Mescolare il tavolo da gioco con
       \begin{algorithm}[H]\normalfont\small
         \For{$i\leftarrow N-1$ \KwTo $0$}{
-          j $\leftarrow \lfloor$ random()$\cdot$ i $\rfloor$\;
+          j $\leftarrow \lfloor$ random($[0,1)$)$\cdot$ i $\rfloor$\;
           [V[i], V[j]] = [V[j], V[i]]\;
         }
       \end{algorithm}{\scriptsize

@@ -89,19 +89,12 @@
 %%%%%% MEMORY
 \begin{frame}\transfade
   \begin{exercise}\centering
-    \begin{enumerate}
-      \item Modificare la funzione \mintjs{crea_tavolo} di modo che crei anche il tavolo nella pagina HTML e restituisca anziché \texttt{[i,j]} l'elemento \texttt{img} corrispondente.
-      \item Creare una funzione \mintjs{gestisci_click(elemento, tessere, info, num_coppie)} dove \texttt{elemento} è l'elemento \texttt{img} cliccato, \texttt{tessere} è un array contenente le tessere attualmente scoperte (esclusa quella girata e quelle già indovinate, di conseguenza il vettore conterrà zero o una tessera), \texttt{info} è un oggetto \mintjs{{tenativi, giuste}}, \texttt{num\_coppie} il numero totale di coppie di tessere.\\
-      Deve "girare" la tessere nell'HTML, verificare se è stata fatta una coppia (e di conseguenza incrementare il numero di tentativi e, in caso, di coppie giuste; se tutte le tessere sono state abbinate congratularsi col giocatore) e, se già due tessere sono state scoperte, rigirarle dopo qualche secondo (utilizzare \mintjs{setTimeout(callback, millisec)}).
-    \end{enumerate}
+    Modificare la funzione \mintjs{crea_tavolo} di modo che crei anche il tavolo nella pagina HTML e restituisca anziché \texttt{[i,j]} l'elemento \texttt{img} corrispondente.
   \end{exercise}
 \end{frame}
 
 \begin{frame}[fragile]\transfade
   \begin{sol}\centering
-    \begin{enumerate}
-      \item
-
       \begin{multicols}{2}
 \begin{minted}[fontsize=\tiny]{js}
 /**
@@ -157,31 +150,57 @@ function crea_tavolo(size){
 }
       \end{minted}
       \end{multicols}
-    \end{enumerate}
   \end{sol}
 \end{frame}
+
+
+\begin{frame}\transfade
+  \begin{exercise}\centering
+    Creare una funzione \mintjs{gestisci_click(elemento, tessere, info, num_coppie)} dove
+    \begin{itemize}
+      \item \texttt{elemento} è l'elemento \texttt{img} cliccato
+      \item \texttt{tessere} è un array contenente le tessere attualmente scoperte (esclusa quella girata e quelle già indovinate)
+      \item \texttt{info} è un oggetto \mintjs{{tenativi, giuste}}
+      \item \texttt{num\_coppie} il numero totale di coppie di tessere
+    \end{itemize}
+    La funzione deve
+    \begin{enumerate}
+      \item "girare" la tessere nell'HTML
+      \item se già due tessere sono state scoperte:
+        \begin{enumerate}
+          \item incrementare il numero di tentativi
+          \item verificare se è stata fatta una coppia (e se tutte le tessere sono state abbinate congratularsi col giocatore)
+          \item altrimenti rigirarle dopo qualche secondo (utilizzare \mintjs{setTimeout(callback, millisec)})
+        \end{enumerate}
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+
 \begin{frame}[fragile]\transfade
   \begin{sol}\centering
-    \begin{enumerate}
-    \setcounter{enumi}{1}
-      \item memory.css
+    memory.css
       \begin{minted}{css}
 .nascosto{
     display: none;
 }
       \end{minted}
       memory.html
+      \begin{itemize}
+        \item Giusto/Sbagliato inizialmente nascosto
+        \item Il numero di tentativi e di coppie giuste inserito in uno span per poterli modificare da JS
+      \end{itemize}
       \begin{minted}{html}
 <h3 id="corretto" class="corretto nascosto"> Giusto </h3>
 <h3 id="errore" class="errore nascosto"> Sbagliato </h3>
 <p> Tentativi: <span id="tentativi">0</span> </p>
 <p> Giuste: <span id="giuste">0</span> </p>
       \end{minted}
-    \end{enumerate}
   \end{sol}
 \end{frame}
 \begin{frame}[fragile]\transfade
   \begin{sol}\centering
+    memory.js
 \begin{minted}[fontsize=\tiny]{js}
 /**
  * @typedef {{

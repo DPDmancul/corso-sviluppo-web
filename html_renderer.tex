@@ -1,0 +1,58 @@
+\usepackage{xargs,xparse,shellesc}
+
+\makeatletter
+
+\edef\html@dir{img/htmlRender}
+
+\protected\def\ShellEscape{\immediate\write18 }
+\ShellEscape{mkdir -p "\html@dir"}
+
+\newwrite\html@stream
+
+\newcounter{html@count}
+
+\newcommandx\html@render[3][1={-s A5}, 2={}]{%
+  \def\html@name{\jobname _\thehtml@count}%
+  \stepcounter{html@count}%
+  \def\html@code{\unexpanded\expandafter{#3}}%
+%
+  \def\html@file{\html@dir/\html@name.html}
+  \def\html@tmp{\html@file.tmp}
+  \def\html@pdf{\html@dir/\html@name.pdf}
+%
+  \begingroup%
+    \immediate\openout\html@stream=\html@tmp%
+    \catcode`\^^M=13%
+    \newlinechar`\^^M%
+    \immediate\write\html@stream{\html@code}%
+    \immediate\closeout\html@stream%
+  \endgroup%
+%
+  \ShellEscape{if cmp -s "\html@file" "\html@tmp";then rm "\html@tmp"; else mv "\html@tmp" "\html@file"; wkhtmltopdf --enable-local-file-access --enable-forms #1 "\html@file" "\html@pdf"; fi}%
+%
+  \includegraphics[#2]{\html@pdf}%
+}
+
+\NewDocumentCommand{\htmlRender}{O{-s~A6} O{} +v}{%
+  \html@render[#1][#2]{#3}%
+}
+
+\ExplSyntaxOn
+
+\NewDocumentCommand{\htmlDual}{O{-s~A6} O{} O{} O{html} +v +v +v}{
+  \begin{columns}
+    \begin{column}{.56\textwidth}
+      \exp_args:Nx \scantokens{
+        \string\begin{minted}[#2]{#4}\unexpanded\expandafter{#6}\string\end{minted}
+      }
+    \end{column}
+    \hfill
+    \begin{column}{.42\textwidth}
+      \html@render[#1][width=\textwidth,#3]{#5#6#7}
+    \end{column}
+  \end{columns}
+}
+
+\ExplSyntaxOff
+
+\makeatother

@@ -1,0 +1,73 @@
+% !TeX root = ../../Parte1.tex
+\secmeme{html/img}
+\section{Immagini}
+
+\begin{frame}[fragile]{Immagini}\transfade\centering
+  \htmlDual[-s A6][]{<meta charset="utf-8"><base href="../">}{
+<img src="disegno.png" alt="Figura di esempio">
+  }{}
+\end{frame}
+
+\begin{frame}[fragile]{Immagini in linea}\transfade\centering
+  \htmlDual[-s A7][breaklines][trim={0 2cm 0 0},clip]{<meta charset="utf-8"><base href="../"><style>img{width:200px}</style>}{
+<img src="disegno.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat sagittis dapibus. In faucibus risus ut suscipit venenatis. Vestibulum sed urna tortor. In lobortis mauris vel tincidunt ultricies. Nullam vehicula tempus semper. Proin id erat nec metus maximus ultricies.
+  }{}
+\end{frame}
+
+\begin{frame}[fragile]{Figure}\transfade\centering
+  \htmlDual[-s A7][][trim={0 5cm 0 0},clip]{<meta charset="utf-8"><base href="../"><style>img{width:200px}</style>}{
+<figure>
+  <img src="disegno.png" alt="Figura di esempio">
+  <figcaption>Figura astratta</figcaption>
+</figure>
+  }{}
+\end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \htmlRender[-s A7][trim={0 1.5cm 0 0},clip, height=.85\textheight]{
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title> Memory </title>
+        <style>img{width:100px}</style>
+    </head>
+    <body>
+
+        <header>
+            <hgroup>
+                <h1> Memory </h1>
+                <h2> Fai la tua mossa </h2>
+            </hgroup>
+        </header>
+
+        <img src="../../memory/html/img/dorso.png" alt="Dorso">
+
+        <section>
+            <h3> Giusto / Sbagliato </h3>
+            <p> Tentativi: 0 </p>
+            <p> Giuste: 0 </p>
+        </section>
+
+<footer>
+  <ul>
+      <li> Informazioni sul gioco
+      <li> Torna su
+  </ul>
+</footer>
+
+    </body>
+</html>}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \makeatletter
+    \mint[breaklines]{html}|<img src="img/dorso.png" alt="Dorso">|
+    \makeatother
+  \end{sol}
+\end{frame}

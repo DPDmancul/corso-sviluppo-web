@@ -1,0 +1,185 @@
+% !TeX root = ../../Parte1.tex
+\secmeme{html/headbody}
+\section{Primi passi}
+
+\begin{frame}[fragile]{Esempio minimale}\transfade\centering
+  \begin{minted}{html}
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title>Titolo</title>
+    </head>
+    <body>
+        <!-- Corpo del documento -->
+    </body>
+</html>
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Metadati}\transfade\centering
+  \begin{minted}{html}
+<head>
+    <meta charset="utf-8">
+
+    <meta name="description" content="Descrizione della pagina">
+    <meta name="keywords" content="HTML, HTML5, esempio">
+    <meta name="author" content="Autore della pagina">
+
+    <!-- Per dispositivi mobili -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Corpo del documento}\transfade\centering
+  \htmlDual[-s A7][][trim={0 7cm 0 0},clip]{
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <title>Titolo</title>
+    <meta charset="utf-8">
+  </head>
+  }{
+<body>
+    <h1>Titolo</h1>
+<!-- h1, h2, h3, h4, h5, h6 -->
+    <p>
+        Questo è un paragrafo di esempio<br>
+        su due righe.
+    </p>
+</body>
+  }{
+</html>
+  }
+\end{frame}
+
+\begin{frame}[fragile]{Suddivisione in sezioni}\transfade\centering
+  \htmlDual[-s A7][][trim={0 5cm 0 0},clip]{
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <title>Titolo</title>
+    <meta charset="utf-8">
+  </head>
+  }{
+<body>
+    <section>
+        <h1>Sezione 1</h1>
+        <p>§ 1.1</p>
+    </section>
+    <section>
+        <h1>Sezione 2</h1>
+        <p>§ 2.1</p>
+        <p>§ 2.2</p>
+    </section>
+</body>
+  }{
+</html>
+  }
+\end{frame}
+
+\begin{frame}{Contenitori: \texttt{section} vs \texttt{article}}\transfade\centering
+  \begin{enumerate}[<+->]
+    \item \minttag{section} raggruppa contenuti distinti; divide un contenuto più grande.
+    \item \minttag{article} raggruppa contenuti simili; ha senso anche da solo.
+  \end{enumerate}
+  \visible<3->{\minttag{section} e \minttag{article} possono essserre contenuti uno nell'altro.}
+\end{frame}
+
+\begin{frame}[fragile]{Contenitori: \texttt{section} e \texttt{article}}\transfade\centering
+  \htmlDual[-s A7]{
+    <meta charset="utf-8">
+    <style>h2{font-size:1.3em}</style>
+  }{
+<body>
+    <article>
+        <h1>Quanto è bello HTML</h1>
+        <section>
+            <h2>Sommario</h2>
+            <p>HTML è stupendo.</p>
+        </section>
+        <section>
+            <h2>Introduzione</h2>
+            <p>Bla bla bla</p>
+        </section>
+        ...
+        <section>
+            <h2>Citazioni</h2>
+            <article>
+                <p>HTML è super.</p>
+                <p> -- Pinco Pallino</p>
+            </article>
+            ...
+        </section>
+    </article>
+</body>
+  }{}
+\end{frame}
+
+\begin{frame}{Altri contenitori}\transfade\centering
+  \begin{description}[<+->]
+    \itemtt[nav] sezione principale collegamenti.
+    \itemtt[aside] conenuto aggiuntivo (barra laterale).
+    \itemtt[header] intestazione / introduzione della pagina o di un contenitore.
+    \itemtt[hgroup] raggruppa titolo e sottotitolo.
+    \itemtt[footer] piè di pagina o conclusione di un contenitore.
+    \itemtt[figure] conteniene una figura (immagine, video, codice, tabella, ...).
+    \itemtt[figcaption] didascalia della figura.
+    \itemtt[span] blocco di testo (utile per applicare CSS).
+    \itemtt[div] contenitore generico.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Separatore orizzontale}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip]{<meta charset="utf-8">}{
+<p> Primo paragrafo </p>
+<hr>
+<p> Secondo paragrafo </p>
+  }{}
+\end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \htmlRender[-s A7][trim={0 5cm 0 0},clip]{
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title> Memory </title>
+    </head>
+    <body>
+
+        <header>
+            <hgroup>
+                <h1> Memory </h1>
+                <h2> Fai la tua mossa </h2>
+            </hgroup>
+        </header>
+
+        <article>
+
+            <!-- Tavolo gioco memory -->
+
+            <section>
+                <h3> Giusto / Sbagliato </h3>
+                <p> Tentativi: 0 </p>
+                <p> Giuste: 0 </p>
+            </section>
+
+        </article>
+
+    </body>
+</html>}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \makeatletter
+    \inputminted[breaklines,fontsize=\tiny]{html}{\html@dir/\jobname _\thehtml@count.html}
+    \makeatother
+  \end{sol}
+\end{frame}

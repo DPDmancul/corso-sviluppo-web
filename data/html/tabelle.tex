@@ -1,0 +1,120 @@
+% !TeX root = ../../Parte1.tex
+\secmeme{html/table}
+\section{Tabelle}
+
+\begin{frame}[fragile]{Tabelle}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip]{<meta charset="utf-8">}{
+<table>
+    <tr>
+        <th> Nome </th>
+        <th> Cognome </th>
+        <th> Età </th>
+    </tr>
+    <tr>
+        <td> Pinco Tizio </td>
+        <td> Pallino </td>
+        <td> 6 </td>
+    </tr>
+    <tr>
+        <td> Mario </td>
+        <td> Rossi </td>
+        <td> 23 </td>
+    </tr>
+</table>
+  }{}
+\end{frame}
+
+\begin{frame}[fragile]{Espandere righe e colonne}\transfade\centering
+  \htmlDual[-s A7][][trim={0 8cm 0 0},clip]{<meta charset="utf-8"><style>table,td,th{border:solid 1px;border-collapse:collapse;padding:5px}</style>}{
+<table>
+    <tr>
+        <th colspan="2"> Nome e Cognome </th>
+        <th> Età </th>
+    </tr>
+    <tr>
+        <td> Pinco Tizio </td>
+        <td> Pallino </td>
+        <td rowspan="2"> 17 </td>
+    </tr>
+    <tr>
+        <td> Mario </td>
+        <td> Rossi </td>
+    </tr>
+</table>
+  }{}
+\end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \htmlRender[-s A7][height=.85\textheight]{
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title> Memory </title>
+        <style>img{width:40px}h1{margin:0}</style>
+        <base href="../../memory/html/">
+    </head>
+    <body>
+
+<header id="top">
+    <hgroup>
+        <h1> Memory </h1>
+        <h2> Fai la tua mossa </h2>
+    </hgroup>
+</header>
+
+<table>
+    <tr>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+    </tr>
+    <tr>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+    </tr>
+    <tr>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+    </tr>
+    <tr>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+        <td><img src="img/dorso.png" alt="Dorso"></td>
+    </tr>
+</table>
+
+        <section>
+            <h3> Giusto / Sbagliato </h3>
+            <p> Tentativi: 0 </p>
+            <p> Giuste: 0 </p>
+        </section>
+
+<footer>
+    <ul>
+        <li> <a href="https://it.wikipedia.org/wiki/Memoria_(gioco)" target="_blank"> Informazioni sul gioco </a>
+        <li> <a href="#top"> Torna su </a>
+    </ul>
+</footer>
+
+    </body>
+</html>}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \makeatletter
+    \inputminted[breaklines, firstline=18, lastline=43, fontsize=\tiny]{html}{\html@dir/\jobname _\thehtml@count.html}
+    \makeatother
+  \end{sol}
+\end{frame}

@@ -1,0 +1,71 @@
+\documentclass[aspectratio=169,compress]{beamer}
+
+\pdfpagewidth\paperwidth
+\pdfpageheight\paperheight
+
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern,amsmath,amssymb,cclicenses,graphicx,subcaption,adjustbox,minted,tikz,array,multicol,attachfile}
+\usetikzlibrary{matrix,backgrounds}
+
+\usepackage[normalem]{ulem}
+
+\input{html_renderer.tex}
+
+%\usetheme{Hannover}%{Warsaw}
+\usecolortheme{beaver}
+
+\usecolortheme{orchid}
+\useinnertheme[shadow]{rounded}
+\useinnertheme{circles}
+
+\setbeamercolor{title in sidebar}{parent=title}
+\setbeamercolor{section in sidebar}{parent=title}
+\setbeamercolor{subsection in sidebar}{parent=subtitle}
+\useoutertheme[height=0pt,left]{sidebar}
+
+\setbeamertemplate{frametitle}[default][center]
+
+% \setbeamercolor{background canvas}{bg=orange}
+
+\hypersetup{pdfstartview={Fit}} % fits the presentation to the window when first displayed
+
+\beamertemplatenavigationsymbolsempty
+
+\def\sectionname{Sezione}
+\makeatletter
+\newcommand\secmeme[1]{\def\sec@meme{\bigskip\includegraphics[height=.5\textheight]{img/meme/#1}}}
+\def\sec@meme{}
+\def\sec@meme@print{\sec@meme\global\def\sec@meme{}}
+\AtBeginSection{\frame{\transfade\centering\sectionpage\sec@meme@print}}
+\def\subsectionname{Sottosezione}
+\AtBeginSubsection{\frame{\transfade\centering\subsectionpage\sec@meme@print}}
+\makeatother
+
+\newtheorem{exercise}{Esercizio}
+\theoremstyle{example}
+\newtheorem{sol}[exercise]{Soluzione}
+
+\def\itemtt[#1]{\item[\texttt{#1}]}
+
+{\usebeamercolor[bg]{frametitle}}
+\colorlet{mintbg}{frametitle.bg}
+\setminted{fontsize=\scriptsize}%,bgcolor=mintbg}
+\setmintedinline{fontsize=\normalsize}
+\newmintinline[minthtml]{html}{}
+\newmintinline[minttag]{apacheconf}{}
+\newmintinline[mintattribute]{ini}{}
+\newmintinline[mintcss]{css}{}
+\newmintinline[mintsmallcss]{css}{fontsize=\small}
+\newmintinline[mintjs]{js}{}
+
+\title[Sviluppo web]{Corso introduttivo allo sviluppo web}
+\author{Davide Peressoni}
+\institute[]{Commissione Informatica\\Collegio Universitario don Nicola Mazza}
+\titlegraphic{\includegraphics[height=80px]{ComInfo}}
+
+\newcommand{\import}[1]{
+  \input{data/#1.tex}
+}

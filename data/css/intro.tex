@@ -1,0 +1,51 @@
+% !TeX root = ../../Parte2.tex
+\secmeme{css/cssmis}
+\section{CSS}
+\begin{frame}[fragile]{Fogli si stile a cascata}\transfade\centering
+  Ci sono tre modi di aggiungere uno stile ad una pagina HTML, mediante CSS:
+  \begin{enumerate}[<+(1)->]
+    \item \textbf{Inline} Mediante \emph{dichiarazioni} inserite nell'attributo \mintattribute{style} dei tag HTML:
+    \minthtml{<span style="color:red">Testo in rosso</a>} {\color{red}Testo in rosso}
+    \item \textbf{Internal} Mediante un \emph{foglio di stile} inserito nel tag \minttag{style}, contenuto nell'\minttag{head}:
+    \begin{minted}{html}
+<head>
+    <style>
+        /* Foglio di stile */
+    </style>
+</head>
+    \end{minted}
+    \item \textbf{External} Mediante un \emph{foglio di stile} esterno:
+    \begin{minted}{html}
+<head>
+    <link rel="stylesheet" href="mystyle.css">
+</head>
+    \end{minted}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Il foglio di stile}\transfade\centering
+  Un \emph{foglio di stile} è composto da più \emph{regole}:\\\medskip
+     \mintcss{p{color:red; font-size:11pt;}}\\
+      \texttt{↑~~~~~~↑~~~~~~~~~~~~~~~↑~~~~~~}\\
+\texttt{Selettore~~Dichiarazione~~~Dichiarazione~~}\par\bigskip
+  Le dichiarazioni sono composte da una \emph{proprietà} e da un \emph{valore} (separati da \texttt{:}) e sono separate da \texttt{;}\\
+\end{frame}
+
+\begin{frame}[fragile]{Selettori}\transfade\centering
+  \begin{description}[<+->]
+    \itemtt[\mintcss{p}] identifica ogni elemento con tag \minttag{p}.
+    \itemtt[\#id] identifica l'elemento mediante il suo \mintattribute{id}.
+    \itemtt[\mintcss{.class}] identifica tutti gli elementi della classe \mintattribute{class}.
+    \itemtt[\mintcss{p.class}] identifica ogni elemento con tag \minttag{p} che appartiene alla classe.
+    \itemtt[*] identifica tutti gli elementi.
+    \itemtt[\mintsmallcss{h1, h2, .titolo}] identifica ogni elemento che corrisponde ad un criterio della lista.
+    \itemtt[\#id \mintcss{p}] identifica ogni elemento con tag \minttag{p} contenuto nell'elemento con l'\mintattribute{id} specificato.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Impostare le classi}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{html}
+    <h1 class="titolo"> Tiotlo </h1>
+    <p class="rosso piccolo"> Testo </p>
+  \end{minted}
+\end{frame}

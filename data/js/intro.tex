@@ -1,0 +1,29 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/js}
+\section{JavaScript}
+\begin{frame}[fragile]{\sout{Java}ECMAScript}\transfade\centering
+  Linguaggio di programmazione (scripting) per pagine web.\\\bigskip\pause
+  Orientato agli oggetti (ma senza classi) e agli eventi.\\\bigskip\pause
+  Creato "in fretta" da Netscape, ora standardizzato dalla ECMA.\\
+\end{frame}
+
+\begin{frame}[fragile]{JS in HTML}\transfade\centering
+  Ci sono tre modi di aggiungere uno script JS ad una pagina HTML:
+  \begin{enumerate}[<+(1)->]
+    \item \textbf{Internal} Mediante codice inserito nel tag \minttag{script}:
+    \begin{minted}{html}
+<script>
+    // Codice JS
+</script>
+    \end{minted}
+    \item \textbf{External} Mediante un file sorgente esterno:
+    \begin{minted}{html}
+<script src="myscript.js"></script>
+    \end{minted}
+    \item \textbf{Inline} Per la gestione degli eventi.
+    \begin{minted}{html}
+<span onclick="/* Codice JS */"> Cliccami </span>
+    \end{minted}
+  \end{enumerate}
+  \visible<5->{Il tag \minttag{script} può troavarsi sia nell'\minttag{head} che nel \minttag{body} (solitamente in fondo). Viene eseguito dove si trova.}\\
+\end{frame}

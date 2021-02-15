@@ -1,0 +1,238 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/equal}
+\section{Strutture di controllo}
+\begin{frame}[fragile]{Operatori di comparazione}\transfade\centering
+  \begin{description}
+    \item[\mintjs{==}] Uguaglianza (stesso valore)
+    \item[\mintjs{===}] Uguaglianza stretta (anche stesso tipo)\smallskip
+\begin{minted}{js}
+> 1 == "1"
+  true
+> 1 === "1"
+  false
+\end{minted}
+    \pause\smallskip
+    \item[\mintjs{!=}] Non-uguaglianza
+    \item[\mintjs{!==}] Non-uguaglianza stretta
+    \pause\smallskip
+    \item[\mintjs{>}] Maggiore
+    \item[\mintjs{>=}] Maggiore o uguale
+    \item[\mintjs{<}] Minore
+    \item[\mintjs{<=}] Minore o uguale
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Operatori logici}\transfade\centering
+  \begin{description}[<+->]
+    \item[\mintjs{&&}] Congiunzione logica (\emph{et}, \emph{and}, $\land$)\\\smallskip
+\begin{minipage}{.3\linewidth}
+\begin{minted}{js}
+> false && false
+  false
+> false && true
+  false
+\end{minted}
+\end{minipage}
+\begin{minipage}{.3\linewidth}
+\begin{minted}{js}
+> true && false
+  false
+> true && true
+  true
+\end{minted}
+\end{minipage}\smallskip
+    \item[\mintjs{||}] Disgiunzione inclusiva (\emph{vel}, \emph{or}, $\lor$)\\\smallskip
+\begin{minipage}{.3\linewidth}
+\begin{minted}{js}
+> false || false
+  false
+> false || true
+  true
+\end{minted}
+\end{minipage}
+\begin{minipage}{.3\linewidth}
+\begin{minted}{js}
+> true || false
+  true
+> true || true
+  true
+\end{minted}
+\end{minipage}\smallskip
+    \item[\mintjs{!}] Negazione logica o complemento logico (\emph{not}, $\lnot$)\smallskip
+\begin{minted}{js}
+> !false
+  true
+> !true
+  false
+\end{minted}
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{If}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    if ( /* condizione */ ) {
+        // codice eseguito solo se la condizine è vera
+    } else {
+        // codice eseguito solo se la condizine è falsa
+    }
+  \end{minted}
+  \pause\bigskip
+  La clausola \mintjs{else{}} è opzionale.
+  \begin{minted}[fontsize=\normalsize]{js}
+    if ( a%2 == 0 )
+        console.log(`${a} è pari`);
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Switch}\transfade\centering
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{minted}[fontsize=\normalsize]{js}
+if ( num === 0 )
+    console.log("zero");
+else if ( num === 1 )
+    console.log("uno");
+else if ( num === 2 )
+    console.log("due");
+else
+    console.log("altro");
+      \end{minted}
+    \end{column}
+    \pause
+    \begin{column}{.5\textwidth}
+      \begin{minted}[fontsize=\normalsize]{js}
+switch ( num ) {
+    case 0:
+        console.log("zero");
+        break;
+    case 1:
+        console.log("uno");
+        break;
+    case 2:
+        console.log("due");
+        break;
+    default:
+        console.log("altro");
+}
+      \end{minted}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{While e do-while}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    while ( /* condizione */ ) {
+        // codice eseguito a ripetizione
+        // finché la condizione è vera
+    }
+  \end{minted}
+  Se la condizione inizialmente è falsa il codice non viene mai eseguito.
+  \pause\bigskip
+  \begin{minted}[fontsize=\normalsize, breaklines]{js}
+    do {
+        // codice eseguito a ripetizione
+        // finché la condizione è vera,
+        // ma comuqnue almeno una volta
+    } while ( /* condizione */ );
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{For}\transfade\centering
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{minted}[fontsize=\normalsize]{js}
+let a = [1,2,3];
+let i = 0;
+while(i < a.length){
+    console.log(a[i]);
+    ++i; // equivale a i+=1
+         //          e i=i+1
+}
+      \end{minted}
+    \end{column}
+    \pause
+    \begin{column}{.5\textwidth}
+      \begin{minted}[fontsize=\normalsize]{js}
+let a = [1,2,3];
+for(let i=0; i < a.length; ++i)
+    console.log(a[i]);
+      \end{minted}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{For of}\transfade\centering
+\begin{minted}[fontsize=\normalsize]{js}
+    let a = [1,2,3];
+    for(const e of a)
+        console.log(e);
+\end{minted}
+\end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \begin{enumerate}
+      \item Riempire il tavolo da gioco (\texttt{board}) con coppie di numeri $0,0,1,1,2,2,\dots$.
+      \item Mescolare il tavolo da gioco con
+      \begin{algorithm}[H]\normalfont\small
+        \TitleOfAlgo{Fisher-Yates, variante di Knuth}
+        \KwIn{Vettore V di N elementi da mescolare}
+        \KwOut{Vettore V mescolato}
+        \For{$i\leftarrow N-1$ \KwTo $0$}{
+          j $\leftarrow$ intero random $\colon$ 0 $\leqslant$ j < i \tcp*{ovvero $\lfloor$ random($[0,1)$)$\cdot$ i $\rfloor$~~\\in JS \mintjs{Math.floor(Math.random() * i})~~}
+          [V[i], V[j]] = [V[j], V[i]] \tcp*{Scambia elementi in posizione i e j~~}
+        }
+      \end{algorithm}
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+      \item Riempire il tavolo da gioco (\texttt{board}) con coppie di numeri $0,0,1,1,2,2,\dots$.
+      \begin{minted}{js}
+        // Riempie il tavolo da gioco
+        for(let i = 0; i < SIZE*SIZE; ++i)
+            // Dividendo per due otteniamo coppie di numeri:
+            // [0,0,1,1,2,2,...]
+            board[i] = Math.floor(i/2);
+      \end{minted}
+    \item Mescolare il tavolo da gioco con
+      \begin{algorithm}[H]\normalfont\small
+        \For{$i\leftarrow N-1$ \KwTo $0$}{
+          j $\leftarrow \lfloor$ random($[0,1)$)$\cdot$ i $\rfloor$\;
+          [V[i], V[j]] = [V[j], V[i]]\;
+        }
+      \end{algorithm}{\scriptsize
+        V = \texttt{board}; N = \texttt{SIZE*SIZE}
+      }
+      \begin{columns}
+        \begin{column}{.4\textwidth}
+\begin{minted}[fontsize=\tiny]{js}
+// Mescola il tavolo da gioco
+// Alogoritmo Fisher-Yates, variante di Knuth
+for(let i = SIZE*SIZE-1; i > 0; --i){
+    const j = Math.floor(Math.random() * i);
+    // Scambia gli elementi in posizione i e j
+    [board[i], board[j]] = [board[j], board[i]];
+}
+\end{minted}
+        \end{column}
+        \begin{column}{.4\textwidth}
+\begin{minted}[fontsize=\tiny]{js}
+// Equivalentemente
+for(let i = SIZE*SIZE-1; i > 0; --i){
+    const j = Math.floor(Math.random() * i);
+    let temp = board[i];
+    board[i] = board[j];
+    board[j] = temp;
+}
+\end{minted}
+        \end{column}
+      \end{columns}
+    \end{enumerate}
+  \end{sol}
+\end{frame}

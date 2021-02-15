@@ -1,0 +1,261 @@
+% !TeX root = ../../Parte2.tex
+\secmeme{css/float}
+\section[Posizioni]{Posizionamento degli elementi}
+
+\begin{frame}{Tipi di elemento}\transfade\centering
+  \begin{description}
+    \item[block] Inizia in una nuova linea e occupa tutta la larghezza disponibile, es:
+      \begin{itemize}
+        \item \minttag{h1}, ..., \minttag{h6}
+        \item \minttag{p}
+        \item \minttag{heder}, \minttag{footer}
+        \item \minttag{section}, \minttag{article}
+        \item \minttag{table}
+        \item \minttag{ul}, \minttag{ol}, \minttag{li}
+        \item \minttag{div}
+        \item \minttag{form}
+        \item \minttag{figure}
+      \end{itemize}
+    \item[inline] Non va a capo e occupa solo la larghezza necessaria, es:
+    \begin{itemize}
+      \item \minttag{span}
+      \item \minttag{a}
+      \item \minttag{img}
+      \item \minttag{input}
+    \end{itemize}
+  \end{description}
+\end{frame}
+
+\begin{frame}{Cambiare la visualizzazione di un elemento}\transfade\centering
+  \begin{itemize}
+    \item\mintcss{display: block;}
+    \item\mintcss{display: inline;}
+    \item\mintcss{display: none;} Fa sparire l'elemento, come se non fosse presente.
+    \item\mintcss{visibility: hidden;} Rende invisibile l'elemento, ma mantiene occupato lo spazio.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Centrare orizzontalmente}\transfade\centering
+  \htmlDual[-s A7][][trim={0 9cm 0 0},clip][css]{<style>}{
+#contenitore{ /*padre*/
+  border: 1px solid blue;
+}
+#contenuto{ /*figlio*/
+  border: 1px solid orange;
+  width: 200px;
+  margin: auto;
+}
+  }{
+  </style>
+  <div id="contenitore"><p id="contenuto">Lorem ipsum dolor sit amen.</p></div>}
+  \bigskip
+  Funziona solo per i \mintcss{#contenuto} di tipo \emph{block} (non \emph{inline}).\\
+\end{frame}
+
+\begin{frame}[fragile]{Float}\transfade\centering
+  \htmlDual[-s A7][breaklines][trim={0 3cm 0 0},clip]{<meta charset="utf-8"><base href="../"><style>img{width:200px}</style>}{
+<img id="fig" src="disegno.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat sagittis dapibus. In faucibus risus ut suscipit venenatis. Vestibulum sed urna tortor.
+  }{}
+\end{frame}
+\begin{frame}[fragile]{Float}\transfade\centering
+  \htmlDual[-s A7][fontsize=\noexpand\normalsize][trim={0 5.2cm 0 .5cm},clip][css]{<meta charset="utf-8"><base href="../"><style>img{width:200px}}{
+#fig{
+  float: left;
+}
+  }{</style>
+<img id="fig" src="disegno.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat sagittis dapibus. In faucibus risus ut suscipit venenatis. Vestibulum sed urna tortor.
+  }
+  \htmlDual[-s A7][fontsize=\noexpand\normalsize][trim={0 5.2cm 0 .5cm},clip][css]{<meta charset="utf-8"><base href="../"><style>img{width:200px}}{
+#fig{
+  float: right;
+}
+  }{</style>
+<img id="fig" src="disegno.png">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat sagittis dapibus. In faucibus risus ut suscipit venenatis. Vestibulum sed urna tortor.
+  }
+  \mintcss{float: none} come di default\\
+\end{frame}
+
+\begin{frame}{Tipi di posizionamento}\transfade\centering
+  \begin{description}
+    \item[\mintcss{position: static;}] Default.
+    \item[\mintcss{position: realtive;}] Mediante le proprietà \mintcss{top}, \mintcss{bottom}, \mintcss{left} e \mintcss{right} può essere spostato in relazione alla suo posizione di default.
+    \item[\mintcss{position: fixed;}] Mediante le proprietà \mintcss{top}, \mintcss{bottom}, \mintcss{left} e \mintcss{right} può essere posizionato in relazione alla pagina. Non si muove allo scorrere della pagina.
+    \item[\mintcss{position: sticky;}] Come \mintcss{relative} quando rientra nello schermo, diventa \mintcss{fixed} quando scorrendo la pagina uscirebbe dallo schermo.
+    \item[\mintcss{position: absolute;}] Mediante le proprietà \mintcss{top}, \mintcss{bottom}, \mintcss{left} e \mintcss{right} può essere posizionato in relazione al padre (conteniotre).
+  \end{description}
+\end{frame}
+
+\input{data/css/flex}
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \begin{columns}
+      \begin{column}{.45\textwidth}
+        \htmlRender[-s A5][height=.85\textheight, trim={1cm 7cm 1cm 0},clip]{<meta charset="utf-8"><style>img{width:70px !important;height: 70px !important}</style>
+    <base href="../../memory/html/">
+<style>
+body{
+    background-color: bisque;
+    text-align: center;
+}
+
+h1{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 40pt;
+    color: blue;
+}
+
+h1, h2, h3{
+    margin: 0;
+}
+
+.corretto{
+    color: green;
+}
+.errore{
+    color: red;
+}
+
+#gioco{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#tavolo{
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 15px;
+}
+
+#gioco aside{
+    margin: 20px;
+}
+
+#tavolo img{
+    height: 100px;
+    width: 100px;
+}
+
+footer ul li{
+    display: inline;
+    margin: 0 20px;
+}
+footer ul a, #gioco button{
+    background-color: brown;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+</style>
+<header id="top">
+    <hgroup>
+        <h1> Memory </h1>
+        <h2> Fai la tua mossa </h2>
+    </hgroup>
+</header>
+
+<article id="gioco">
+<table id="tavolo">
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+      <tr>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+          <td><img src="img/dorso.png" alt="Dorso"></td>
+      </tr>
+  </table>
+
+<aside>
+    <section>
+        <h3 class="corretto"> Giusto </h3>
+        <h3 class="errore"> Sbagliato </h3>
+        <p> Tentativi: 0 </p>
+        <p> Giuste: 0 </p>
+    </section>
+
+    <button> Ricomincia </button>
+</aside>
+
+</article>
+
+<footer>
+    <ul>
+        <li> <a href="https://it.wikipedia.org/wiki/Memoria_(gioco)" target="_blank"> Informazioni sul gioco </a>
+        <li> <a href="#top"> Torna su </a>
+    </ul>
+</footer>}
+      \end{column}
+      \begin{column}{.45\textwidth}
+        \begin{enumerate}
+          \item Link nel footer \emph{inline} e con \texttt{20px} di margine laterale
+          \item Raggruppare le info sul gioco in previsione di una "barra laterale", con \texttt{20px} di margine.
+          \item Layout flex per il gioco, centrando il contenuto.
+        \end{enumerate}
+      \end{column}
+    \end{columns}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+      \item Link nel footer \emph{inline} e con \texttt{20px} di margine laterale
+\makeatletter
+      \inputminted[breaklines, firstline=50, lastline=53]{css}{\html@dir/\jobname _\thehtml@count.html}
+      \makeatother
+    \end{enumerate}
+  \end{sol}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+      \setcounter{enumi}{1}
+      \item Raggruppare le info sul gioco in previsione di una "barra laterale", con \texttt{20px} di margine.\\
+      \texttt{memory.html}:
+      \makeatletter
+      \inputminted[breaklines, firstline=99, lastline=108]{html}{\html@dir/\jobname _\thehtml@count.html}
+      \texttt{memory.css}:
+      \inputminted[breaklines, firstline=41, lastline=43]{css}{\html@dir/\jobname _\thehtml@count.html}
+      \makeatother
+    \end{enumerate}
+  \end{sol}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \begin{enumerate}
+      \setcounter{enumi}{2}
+      \item Layout flex per il gioco, centrando il contenuto.
+      \makeatletter
+      \inputminted[breaklines, firstline=26, lastline=30]{html}{\html@dir/\jobname _\thehtml@count.html}
+      \makeatother
+    \end{enumerate}
+  \end{sol}
+\end{frame}

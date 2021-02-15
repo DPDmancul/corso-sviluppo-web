@@ -1,0 +1,269 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/dom}
+\section[DOM]{DOM\\Document Object Model}
+\begin{frame}{Ottenere un elemento}\transfade\centering
+  \begin{itemize}
+    \item\mintjs{document.getElementById("pippo") // Singolo elemento}\\\smallskip
+      \minthtml[fontsize=\scriptsize]{<span id="pippo"></span>}\bigskip
+    \item\mintjs{document.getElementsByClassName("pluto") // Array di elementi}\\\smallskip
+      \minthtml[fontsize=\scriptsize]{<span class="pluto"></span>}, \minthtml[fontsize=\scriptsize]{<a class="pluto"></a>}\bigskip
+    \item\mintjs{document.getElementsByName("paperino") // Array di elementi}\\\smallskip
+      \minthtml[fontsize=\scriptsize]{<input name="paperino"></input>}, \minthtml[fontsize=\scriptsize]{<input name="paperino"></input>}\bigskip
+    \item\mintjs{document.getElementsByTagName("p") // Array di elementi}\\\smallskip
+      \minthtml[fontsize=\scriptsize]{<p></p>}, \minthtml[fontsize=\scriptsize]{<p id="topolino"></p>}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Leggere e modificare il contenuto}\transfade\centering
+  Leggere il contenuto:
+  \begin{minted}[fontsize=\normalfont]{js}
+    > let p = document.getElementById("testo");
+    > console.log( p.innerHTML );
+      "testo originale"
+  \end{minted}
+  \pause\bigskip
+  Modificare il contenuto:
+  \begin{minted}[fontsize=\normalfont]{js}
+      let p = document.getElementById("testo");
+      p.innerHTML = "Testo modificato";
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Leggere e modificare gli attributi}\transfade\centering
+  Leggere un attributo:
+  \begin{minted}[fontsize=\normalfont]{js}
+    > let a = document.getElementById("ancora");
+    > console.log( a.href );
+      "http://duckduckgo.com"
+  \end{minted}
+  \pause\bigskip
+  Modificare un attributo:
+  \begin{minted}[fontsize=\normalfont]{js}
+      let a = document.getElementById("ancora");
+      a.setAttribute("href", "https://duckduckgo.com");
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Cambiare la classe di un elemento}\transfade\centering
+  \begin{minted}[fontsize=\normalfont]{js}
+    let pluto = document.getElementById("Pluto");
+
+    // Aggiungi una nuova classe all'elemento
+    pluto.classList.add("Pippo");
+
+    // Rimuovi una classe dall'elemento
+    pluto.classList.remove("Paperino");
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]{Creare un nuovo elemento}\transfade\centering
+  \begin{minted}[fontsize=\normalfont]{js}
+    let p = document.createElement("p"); // Creo un paragrafo
+
+    p.innerHTML = "Testo"; // Inserisco il testo nel paragrafo
+    p.classList.add("testo-bello"); // Aggiungo una classe
+    p.setAttribute("id", "testo-js"); // Imposto l'id
+
+    let contenitore = document.getElementById("contenitore");
+
+    contenitore.appendChild(p); /* Inserisco il paragrafo
+                                   nel contenitore */
+  \end{minted}
+  \bigskip
+  \begin{tabular}{m{.3\textwidth} m{.1\textwidth} m{.4\textwidth}}
+    \minthtml[fontsize=\scriptsize]{<div id="contenitore"></div>} &$\to$&\hspace*{-1cm}
+    \begin{minipage}{\columnwidth}
+      \begin{minted}{html}
+<div id="contenitore">
+    <p class="testo-bello" id="testo-js">
+        Testo
+    </p>
+</div>
+      \end{minted}
+    \end{minipage}
+  \end{tabular}
+\end{frame}
+
+
+%%%%%% MEMORY
+\begin{frame}\transfade
+  \begin{exercise}\centering
+    Modificare la funzione \mintjs{crea_tavolo} di modo che crei anche il tavolo nella pagina HTML e restituisca anziché \texttt{[i,j]} l'elemento \texttt{img} corrispondente.
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+      \begin{multicols}{2}
+\begin{minted}[fontsize=\tiny]{js}
+/**
+ * @typedef {{
+ *    immagine: HTMLImageElement,
+ *    numero: number,
+ *    selezionabile: boolean
+ * }} Tessera
+ */
+
+/**
+ * Crea il tavolo da gioco nella pagina HTML.
+ * @param {number} size - Dimensione del tavolo da gioco.
+ * @return {Tessera[]} Contiene le tessere del tavolo da gioco.
+ */
+function crea_tavolo(size){
+
+  const board = genera_numeri_tessere(size);
+
+  let tavolo_html = document.getElementById('tavolo');
+
+  /**
+   * Tessere del tavolo da gioco
+   * @type Tessera[]
+   */
+  let tavolo = [];
+
+  // Svuota il tavoo da gioco
+  tavolo_html.innerHTML = "";
+
+  for(let i = 0; i < size; ++i){
+      let riga = document.createElement("tr");
+      for (let j = 0; j < size; ++j){
+          let cella = document.createElement("td");
+          let immagine = document.createElement("img");
+
+          immagine.setAttribute("src", "img/dorso.png");
+          immagine.setAttribute("alt", "Dorso");
+
+          tavolo.push({
+              immagine: immagine,
+              numero: board[ i * size + j ],
+              selezionabile: true
+          });
+
+          cella.appendChild(immagine);
+          riga.appendChild(cella);
+      }
+      tavolo_html.appendChild(riga);
+  }
+
+  return tavolo;
+}
+      \end{minted}
+      \end{multicols}
+  \end{sol}
+\end{frame}
+
+
+\begin{frame}\transfade
+  \begin{exercise}\centering
+    Creare una funzione \mintjs{gestisci_click(elemento, tessere, info, num_coppie)} dove
+    \begin{itemize}
+      \item \texttt{elemento} è l'elemento \texttt{img} cliccato
+      \item \texttt{tessere} è un array contenente le tessere attualmente scoperte (esclusa quella girata e quelle già indovinate)
+      \item \texttt{info} è un oggetto \mintjs{{tenativi, giuste}}
+      \item \texttt{num\_coppie} il numero totale di coppie di tessere
+    \end{itemize}
+    La funzione deve
+    \begin{enumerate}
+      \item "girare" la tessere nell'HTML
+      \item se già due tessere sono state scoperte:
+        \begin{enumerate}
+          \item incrementare il numero di tentativi
+          \item verificare se è stata fatta una coppia (e se tutte le tessere sono state abbinate congratularsi col giocatore)
+          \item altrimenti rigirarle dopo qualche secondo (utilizzare \mintjs{setTimeout(callback, millisec)})
+        \end{enumerate}
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    memory.css
+      \begin{minted}{css}
+.nascosto{
+    display: none;
+}
+      \end{minted}
+      memory.html
+      \begin{itemize}
+        \item Giusto/Sbagliato inizialmente nascosto
+        \item Il numero di tentativi e di coppie giuste inserito in uno span per poterli modificare da JS
+      \end{itemize}
+      \begin{minted}{html}
+<h3 id="corretto" class="corretto nascosto"> Giusto </h3>
+<h3 id="errore" class="errore nascosto"> Sbagliato </h3>
+<p> Tentativi: <span id="tentativi">0</span> </p>
+<p> Giuste: <span id="giuste">0</span> </p>
+      \end{minted}
+  \end{sol}
+\end{frame}
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    memory.js
+\begin{minted}[fontsize=\tiny]{js}
+/**
+ * @typedef {{
+ *    tentativi: number,
+ *    giuste: number
+ * }} Info
+ */
+
+/**
+ * Gestisce l'evento click su un'`img` selezionabile del tavolo.
+ * @param {Tessera} elemento - Elemento su cui è avvenuto il click.
+ * @param {Tessera[]} tessere - Contiene gli elementi delle tessere precedentemente scoperte.
+ * @param {Info} info - Contiene il numero di tenativi e di abbinamenti corretti.
+ * @param {number} num_coppie - Numero di coppie totali.
+ */
+function gestisci_click(elemento, tessere, info, num_coppie){
+    if(tessere.length === 2) // Ci sono già due tessere girate
+        return;
+
+    tessere.push(elemento);
+    elemento.selezionabile = false;
+    elemento.immagine.setAttribute("src", `img/${elemento.numero}.png`);
+    elemento.immagine.setAttribute("alt", DESCRIZIONE[elemento.numero]);
+
+      \end{minted}
+      \dots
+  \end{sol}
+\end{frame}
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering\dots
+\begin{minted}[fontsize=\tiny]{js}
+    if(tessere.length === 2){ // È la seconda tessera girata
+        document.getElementById("tentativi").innerText = ++info.tentativi;
+
+        if(tessere[0].numero === tessere[1].numero){ // Corretto
+            document.getElementById("errore").classList.add("nascosto");
+            document.getElementById("corretto").classList.remove("nascosto");
+            document.getElementById("giuste").innerText = ++info.giuste;
+
+            // Svuota l'array delle tessere attuali
+            tessere.length = 0
+
+            if (info.giuste === num_coppie){
+                alert("Complimenti!");
+                inizio();
+            }
+        }else{ // Errore
+            document.getElementById("corretto").classList.add("nascosto");
+            document.getElementById("errore").classList.remove("nascosto");
+
+            // Richiudi le tessere dopo 1 secondo
+            setTimeout( () =>{
+                for(let t of tessere){
+                    t.immagine.setAttribute("src", "img/dorso.png");
+                    t.immagine.setAttribute("alt", "Dorso");
+                    t.selezionabile = true;
+                }
+                // Svuota l'array delle tessere attuali
+                tessere.length = 0
+            }, 1000 /* ms */);
+        }
+    }
+}
+      \end{minted}
+  \end{sol}
+\end{frame}

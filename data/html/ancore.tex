@@ -1,0 +1,85 @@
+% !TeX root = ../../Parte1.tex
+\secmeme{html/link}
+\section{Collegamenti}
+
+\begin{frame}[fragile]{Collegamenti esterni (link)}\transfade\centering
+  \htmlDual[-s A7][][trim={0 9.5cm 0 0},clip]{<meta charset="utf-8">}{
+<a href="https://duckduckgo.com"
+  title="Apri il miglior motore di ricerca">
+    Cerca su internet
+</a>
+  }{}
+  \pause\bigskip
+  L'attributo \mintattribute{title} fornisce il testo per un tooltip e può essere usato su ogni tag.
+  \pause\par
+  Impostando l'attributo \mintattribute{target="_blank"} il link si aprirà in una nuova scheda.\\
+\end{frame}
+
+\begin{frame}[fragile]{Collegamenti interni (àncore)}\transfade\centering
+  \htmlDual[-s A7][breaklines][trim={0 4cm 0 0},clip]{<meta charset="utf-8">}{
+<header id="top">
+    <h1> Pagina di prova </h1>
+</header>
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat sagittis dapibus. In faucibus risus ut suscipit venenatis. Vestibulum sed urna tortor. In lobortis mauris vel tincidunt ultricies. Nullam vehicula tempus semper. Proin id erat nec metus maximus ultricies.
+</p>
+<footer>
+    <a href="#top"> Torna su </a>
+</footer>
+  }{}
+  \pause\bigskip
+  Con l'attributo \mintattribute{id} sul tag target scegliamo il nome dell'àncora.
+  \pause\par
+  Impostando come \mintattribute{href} il nome dell'àncora preceduto da un cancelletto (\texttt{\#}) creaiamo un collegamento ad essa.\pause\par
+  Collegamenti ad àncore di altre pagine: \mintattribute{href="page2.html#anchor"}\\
+\end{frame}
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    \htmlRender[-s A7][trim={0 1.5cm 0 0},clip, height=.85\textheight]{
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <title> Memory </title>
+        <style>img{width:100px}</style>
+    </head>
+    <body>
+
+<header id="top">
+    <hgroup>
+        <h1> Memory </h1>
+        <h2> Fai la tua mossa </h2>
+    </hgroup>
+</header>
+
+        <img src="../../memory/html/img/dorso.png" alt="Dorso">
+
+        <section>
+            <h3> Giusto / Sbagliato </h3>
+            <p> Tentativi: 0 </p>
+            <p> Giuste: 0 </p>
+        </section>
+
+<footer>
+    <ul>
+        <li> <a href="https://it.wikipedia.org/wiki/Memoria_(gioco)" target="_blank"> Informazioni sul gioco </a>
+        <li> <a href="#top"> Torna su </a>
+    </ul>
+</footer>
+
+    </body>
+</html>}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \makeatletter
+    \inputminted[breaklines, firstline=10, lastline=15]{html}{\html@dir/\jobname _\thehtml@count.html}
+    \dots
+    \inputminted[breaklines, firstline=25, lastline=30]{html}{\html@dir/\jobname _\thehtml@count.html}
+    \makeatother
+  \end{sol}
+\end{frame}

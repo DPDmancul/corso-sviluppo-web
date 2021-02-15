@@ -1,0 +1,104 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/js_aspirina}
+\section{Oggetti}
+\begin{frame}[fragile]{Oggetti}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    let utente = {
+
+        // Proprietà
+        nome: "Franco",
+        cognome: "Scaglia",
+
+        // Metodi
+        compleanno: () => {
+            const oggi = new Date();
+            const dd = oggi.getDate();
+            const mm = oggi.getMonth() + 1;
+
+            return `${dd}/${mm}`;
+        }
+    };
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Accedere alle proprietà}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    > utente.nome;
+      "Franco"
+    > utente["nome"];
+      "Franco"
+
+    > utente.nome_completo = function () {
+          return `${this.nome} ${this.cognome}`;
+      }
+    > utente.nome_completo();
+      "Franco Scaglia"
+  \end{minted}
+  \bigskip
+  \alert{Attenzione!} \mintjs{this} NON è disponibile se dichiariamo il metodo con una funzione a freccia.\\
+\end{frame}
+
+\begin{frame}[fragile]{For in}\transfade\centering
+  \begin{minted}[fontsize=\normalsize]{js}
+    > let obj = { a: 1, b: 'a', c: [1,2,3] };
+    > for( p in obj )
+          console.log(p, obj[p]);
+      "a" 1
+      "b" "a"
+      "c" [ 1, 2, 3 ]
+  \end{minted}
+\end{frame}
+
+
+
+%%%%%% MEMORY
+\begin{frame}[fragile]\transfade
+  \begin{exercise}\centering
+    Creare funzione \mintjs{crea_tavolo(size)} che dato un tavolo \mintjs{board = genera_numeri_tessere(size)} ritorna un vettore di oggetti rappresentanti una tessera:
+    \begin{minted}{js}
+{
+  immagine: [i,j],    // coordinate della tessera nel tavolo
+  numero: board[k],   // numero dell'immagine della tessera
+  selezionabile: true // la cella è coperta, e quindi selezionabile
+}
+    \end{minted}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+      \begin{minted}[fontsize=\tiny]{js}
+/**
+ * @typedef {{
+ *    immagine: number[],
+ *    numero: number,
+ *    selezionabile: boolean
+ * }} Tessera
+ */
+
+/**
+ * Crea il tavolo da gioco nella pagina HTML.
+ * @param {number} size - Dimensione del tavolo da gioco.
+ * @return {Tessera[]} Contiene le tessere del tavolo da gioco.
+ */
+function crea_tavolo(size){
+    const board = genera_numeri_tessere(size);
+    /**
+     * Tessere del tavolo da gioco
+     * @type Tessera[]
+     */
+    let tavolo = [];
+    for(let i = 0; i < size; ++i){
+        for (let j = 0; j < size; ++j){
+            tavolo.push({
+                immagine: [i,j],
+                numero: board[ i * size + j ],
+                selezionabile: true
+            });
+        }
+    }
+    return tavolo;
+}
+      \end{minted}
+  \end{sol}
+\end{frame}

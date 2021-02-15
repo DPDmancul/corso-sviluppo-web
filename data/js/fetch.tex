@@ -1,0 +1,100 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/async}
+\section{Fetch API}
+\begin{frame}{Richieste HTTP}\transfade\centering
+  Per interagire con un backend (es: inviare dati form, caricare nuovi dati nella pagina, \dots) si usano le richieste HTTP.
+  \bigskip\\\pause
+  \alert{Attenzione!} L'url della pagina e della richiesta devono essere sullo stesso dominio oppure l'url della pagina che fa la richiesta deve essere accettato dal server.
+\end{frame}
+
+\begin{frame}{Metodi}\transfade\centering
+  \begin{description}
+    \item[GET] Richiesta dati (dati nell'url: non usare per dati sensibili)\\\pause
+      \texttt{https://duckduckgo.com/\textbf{?q=fetch+api}} $\implies$ OK\\\pause
+      \texttt{https://google.it/login/\textbf{?user=admin\&pass=1234}} $\implies$ NO!!!\pause
+    \item[POST] Invio dati (i dati sono al sicuro nel corpo della richiesta e non visibili nell'url)\pause
+    \item[PUT]
+    \item[DELETE]
+    \item[\dots]
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Richiesta GET semplice}\transfade\centering
+  \begin{minted}{js}
+fetch("https://duckduckgo.com/")    // richiesta GET
+.then(risposta => risposta.text())  // quando arriva la risposta estrai il contenuto
+.then(testo => console.log(testo)) /* callback
+                              (esegue le operazioni col contenuto della risposta) */
+.catch(err => {
+    // eventuale gestione dell'errore
+});
+  \end{minted}
+\bigskip\pause
+  o in alternativa senza callback:
+  \begin{minted}{js}
+let testo = await fetch("https://duckduckgo.com/")
+                  .then(risposta => risposta.text());
+console.log(testo);
+  \end{minted}
+  \smallskip
+  \texttt{await} blocca l'esecuzione del codice in attesa della risposta.\\\pause
+  \texttt{await} può essere usato solo dentro funzioni asincrone:
+  \begin{minted}{js}
+    async function get(url){
+        let testo = await fetch("https://duckduckgo.com/")
+                        .then(risposta => risposta.text());
+        console.log(testo);
+    }
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Richiesta GET di JSON}\transfade\centering
+  JSON (JavaScript Object Notation) è un formato per scambiare facilmente oggetti javascript fra client e server.
+  \smallskip
+  \begin{minted}{json}
+    {
+      "lista" : [1, 2, 3, 4],
+      "numero": 12.4,
+      "testo" : "Lorem ipsum dolor sit amen"
+    }
+  \end{minted}
+  \bigskip\pause
+  \begin{minted}{js}
+fetch("https://gitlab.com/groups/cominfo/-/children.json") // richiesta GET
+.then(risposta => risposta.json()) // quando arriva la risposta estrai l'oggetto
+.then(obj => console.log(obj)); // callback
+                              // (esegue le operazioni con l'oggetto della risposta)
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Richiesta POST semplice}\transfade\centering
+  \begin{minted}{js}
+// Preapra i dati per l'invio
+const dati = new FormData();
+dati.append("q", "fetch api");
+
+fetch("https://duckduckgo.com/", {
+    method: "POST", // la richiesta sarà POST e non GET
+    body: dati, // Invia i dati
+})
+// segue come con risposta GET:
+.then(rispsota => rispsota.text())
+.then(testo => console.log(testo));
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Richiesta POST con JSON}\transfade\centering
+  \begin{minted}{js}
+const dati = {content : "test:\n  script: exit"};
+
+fetch("https://gitlab.com/api/v4/ci/lint", {
+    method: "POST", // la richiesta sarà POST e non GET
+    headers: {"Content-Type" : 'application/json'}, /* Avvisa il server che
+                                                  stiamo inviando un JSON*/
+    body: JSON.stringify(dati), // Crea un JSON dell'oggetto `dati`
+})
+// segue come con risposta GET:
+.then(rispsota => rispsota.json())
+.then(obj => console.log(obj));
+  \end{minted}
+\end{frame}

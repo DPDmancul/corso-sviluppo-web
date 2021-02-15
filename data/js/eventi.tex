@@ -1,0 +1,104 @@
+% !TeX root = ../../Parte3.tex
+\secmeme{js/event}
+\section[Eventi]{Eventi HTML}
+\begin{frame}{Tipi di evento}\transfade\centering
+  \begin{description}
+    \item[onclick] Al click sull'elemento HTML.
+    \item[onmouseover] Quando il mouse passa sopra l'elemento.
+    \item[onmouseout] Quando il mouse si sposta dall'elemento.
+    \item[onkeydown] Quando viene premuto un tasto della tastiera (si usa negli \minttag{input}).
+    \item[onload] Al caricamento dell'elemento (si usa nel \minttag{body}).
+    \item[onchange] Quando un elemento viene cambiato (si usa negli \minttag{input}).
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Registrare un evento}\transfade\centering
+  \begin{itemize}[<+->]
+    \item Da HTML\\
+      \minthtml{<button onclick="alert('Mi hai premuto!')">Premimi</button> }
+    \item Da JS\\
+      \minthtml{<button id="pulsante">Premimi</button> }\\\dots\\
+      \begin{minted}[breaklines]{js}
+document.getElementById("pulsante").onclick = () => alert("Mi hai premuto!");
+      \end{minted}
+  \end{itemize}
+\end{frame}
+
+
+
+
+%%%%%% MEMORY
+\begin{frame}\transfade
+  \begin{exercise}\centering
+    Creare una funzione \texttt{inizio} (invocata al caricamento della pagina e alla pressione del bottone \emph{Ricomincia}) che
+    \begin{enumerate}
+      \item crea un tavolo usando la funzione \texttt{crea\_tavolo}
+      \item inizializza gli elementi HTML di feedback (corretto, giusto, tentativi, giuste)
+      \item crea un vettore vuoto per contenere le celle attualmente aperte
+      \item un oggetto \texttt{info} con tentativi e giuste a zero
+      \item per ogni immagine del tavolo registra all'evento di click col mouse l'esecuzione di \texttt{gestione\_click}
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    memory.html
+    \begin{minted}[breaklines]{html}
+      <body onload="inizio()">
+      ...
+      <button onclick="inizio()"> Ricomincia </button>
+    \end{minted}
+  \end{sol}
+\end{frame}
+
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    memory.js
+    \begin{minted}[breaklines]{js}
+/**
+ * Avvia una nuova partita.
+ */
+function inizio(){
+    // Crea e disegna tavolo
+    let tavolo = crea_tavolo(SIZE);
+
+    // Inizializza elementi HTML
+    document.getElementById("corretto").classList.add("nascosto");
+    document.getElementById("errore").classList.add("nascosto");
+    document.getElementById("tentativi").innerText = 0;
+    document.getElementById("giuste").innerText = 0;
+
+    /**
+     * Contiene le tessere girate in questa mano di gioco.
+     * @type Tessera[]
+     */
+    let tessere_attuali = [];
+
+    \end{minted}
+    \dots
+  \end{sol}
+\end{frame}
+\begin{frame}[fragile]\transfade
+  \begin{sol}\centering
+    \dots
+    \begin{minted}[breaklines]{js}
+    /**
+     * Contiene le informazioni sulla partita.
+     * @type Info
+     */
+    let info = {
+        tentativi: 0,
+        giuste: 0
+    };
+
+    // Gestione evento click
+    for(let e of tavolo)
+        e.immagine.onclick = () => {
+            if(e.selezionabile)
+                gestisci_click(e, tessere_attuali, info, SIZE*SIZE/2);
+        };
+}
+    \end{minted}
+  \end{sol}
+\end{frame}

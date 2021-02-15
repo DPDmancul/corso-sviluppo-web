@@ -8,4 +8,4 @@ Al link ci sono 2 cartelle:
 
 
 Scarica **memory**: https://gitlab.com/cominfo/corso-web/-/archive/master/corso-web-master.zip?path=memory/js  
-Prova **memory**: https://cominfo.gitlab.io/corso-web/
+Prova **memory**: https://cominfo.gitlab.io/corso-web/memory.html

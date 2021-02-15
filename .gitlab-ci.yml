@@ -24,3 +24,13 @@ compile:
     paths:
       - slides/*.pdf
       - print/*.pdf
+      
+pages:
+  stage: production
+  script:  
+    - mv memory/js public
+  artifacts:
+    paths: [public]
+  only: [master]
+
+

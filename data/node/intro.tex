@@ -1,0 +1,91 @@
+% !TeX root = ../../Parte4.tex
+\secmeme{node/modules_anakin}
+\section{Node.js}
+\begin{frame}{Node.js}\transfade\centering
+  Interprete JavaScript\footnote{Lo stesso di Chromium} per eseguire JS lato server.\\\bigskip\pause
+  Orientato agli eventi (dorme finché non arriva una richiesta)
+  \\\pause
+  Massimizza throughput e permette scalabilità.\\
+\end{frame}
+
+\begin{frame}[fragile]{Un server semplice}\transfade\centering
+  \begin{minted}{js}
+"strict mode";
+
+const http = require("http");
+
+const hostname = "127.0.0.1"; // localhost
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200; // Tutto è andato a buon fine
+    res.setHeader('Content-Type', 'text/plain'); // Tipo di risposta (testo semplice)
+    res.end('Hello World!'); // Il corpo della risposta
+});
+
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+  \end{minted}
+  ~\\\bigskip
+  Per eseguirlo: \mint{bash}{node server.js}
+\end{frame}
+
+\begin{frame}{Node Package Manager (npm)}\transfade\centering
+  Permette di gestire facilmente i progetti di Node.js.\\\bigskip\pause
+  Ha problemi di "peso": se si lavora a tanti progetti sulla stessa macchina conviene usare \texttt{pnpm}.\\
+\end{frame}
+
+\begin{frame}[fragile]{Creiamo un progetto con (p)npm}\transfade\centering
+  \begin{enumerate}[<+->]
+    \item Creare un file \texttt{package.json} all'interno della cartella del progetto:
+    \begin{minted}[fontsize=\normalsize]{json}
+      {
+          "name": "memory",
+          "version": "1.0.0",
+          "description": "Semplice gioco del memory",
+          "author": "Davide Peressoni"
+      }
+    \end{minted}
+    \item Creare un file \texttt{server.js} col corpo del programma
+    \item Eseguire il progetto con \texttt{npm start} / \texttt{pnpm start}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Aggiungere una libreria ad un progetto}\transfade\centering
+  \begin{enumerate}[<+->]
+    \item Per ogni pacchetto da aggiungere dare:
+    \begin{minted}{bash}
+       npm add nome_pacchetto
+      pnpm add nome_pacchetto
+    \end{minted}
+    \item[] Il file \texttt{package.js} risulterà aggiornato:
+    \begin{minted}{json}
+      {
+          "name": "memory",
+          "version": "1.0.0",
+          "description": "Semplice gioco del memory",
+          "author": "Davide Peressoni",
+          "dependencies": {
+              "express": "^4.17.1"
+          }
+      }
+    \end{minted}
+    \item Installare i pacchetti aggiunti con
+    \begin{minted}{bash}
+      npm install
+    \end{minted}
+    Il pacchetto sarà installato nella cartella \texttt{node\_modules}.
+    \makeatletter
+    \let\temp@theenumi\theenumi
+    \def\theenumi{}
+    \makeatother
+    \item Per aggiornare i pacchetti installati
+    \makeatletter
+    \let\theenumi\temp@theenumi
+    \makeatother
+    \begin{minted}{bash}
+      npm update
+    \end{minted}
+  \end{enumerate}
+\end{frame}

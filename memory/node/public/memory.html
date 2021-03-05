@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+
+    <head>
+        <meta charset="utf-8">
+        <title> Memory </title>
+        <link rel="stylesheet" href="memory.css">
+        <script src="memory.js"></script>
+    </head>
+
+    <body onload="inizio()">
+
+        <header id="top">
+            <hgroup>
+                <h1> Memory </h1>
+                <h2> Fai la tua mossa </h2>
+            </hgroup>
+        </header>
+
+        <article id="gioco">
+            <table id="tavolo">
+            </table>
+
+            <aside>
+                <section>
+                    <h3 id="corretto" class="corretto nascosto"> Giusto </h3>
+                    <h3 id="errore" class="errore nascosto"> Sbagliato </h3>
+                    <p> Tentativi: <span id="tentativi">0</span> </p>
+                    <p> Giuste: <span id="giuste">0</span> </p>
+                </section>
+
+                <button onclick="inizio()"> Ricomincia </button>
+            </aside>
+        </article>
+
+        <footer>
+            <ul>
+                <li> <a href="https://it.wikipedia.org/wiki/Memoria_(gioco)" target="_blank"> Informazioni sul gioco </a>
+                <li> <a href="#top"> Torna su </a>
+            </ul>
+        </footer>
+
+    </body>
+
+</html>

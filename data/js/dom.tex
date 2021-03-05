@@ -241,7 +241,7 @@ function gestisci_click(elemento, tessere, info, num_coppie){
             document.getElementById("giuste").innerText = ++info.giuste;
 
             // Svuota l'array delle tessere attuali
-            tessere.length = 0
+            tessere.length = 0;
 
             if (info.giuste === num_coppie){
                 alert("Complimenti!");
@@ -259,7 +259,7 @@ function gestisci_click(elemento, tessere, info, num_coppie){
                     t.selezionabile = true;
                 }
                 // Svuota l'array delle tessere attuali
-                tessere.length = 0
+                tessere.length = 0;
             }, 1000 /* ms */);
         }
     }

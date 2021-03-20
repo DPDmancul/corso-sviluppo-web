@@ -39,7 +39,20 @@
     \itemtt[\mintcss{p.class}] identifica ogni elemento con tag \minttag{p} che appartiene alla classe.
     \itemtt[*] identifica tutti gli elementi.
     \itemtt[\mintsmallcss{h1, h2, .titolo}] identifica ogni elemento che corrisponde ad un criterio della lista.
-    \itemtt[\#id \mintcss{p}] identifica ogni elemento con tag \minttag{p} contenuto nell'elemento con l'\mintattribute{id} specificato.
+  \end{description}
+  \dots\\
+\end{frame}
+
+\begin{frame}[fragile]{Selettori (continua)}\transfade\centering
+  \begin{description}[<+->]
+    \itemtt[\#id \mintcss{p}] identifica ogni elemento con tag \minttag{p} contenuto (figlio o nipote) nell'elemento con l'\mintattribute{id} specificato.
+    \itemtt[\#id>\mintcss{p}] identifica ogni elemento con tag \minttag{p} contenuto direttamente (figlio) nell'elemento con l'\mintattribute{id}
+    \smallskip
+    \itemtt[\#id+\mintcss{p}] identifica l'elemento con tag \minttag{p} (il primo) posto subito dopo l'elemento con l'\mintattribute{id} specificato.
+    \itemtt[\#id$\sim$\mintcss{p}] identifica ogni elemento con tag \minttag{p} posto dopo l'elemento con l'\mintattribute{id} specificato.
+    \smallskip
+    \itemtt[\mintcss{img[alt]}] identifica ogni elemento con tag \minttag{img} e attributo \mintattribute{alt}.
+    \itemtt[\mintcss{a[target=_blank]}] identifica ogni elemento con tag \minttag{a} e attributo \mintattribute{target="_blank"}.
   \end{description}
 \end{frame}
 

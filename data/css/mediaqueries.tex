@@ -1,0 +1,41 @@
+% !TeX root = ../../Parte2.tex
+\secmeme{css/misure}
+\section{Media queries}
+
+\begin{frame}[fragile]{Media queries}\transfade\centering
+  \begin{minted}{css}
+    @media screen and (max-width: 400px) {
+        body {
+            background-color: #FFFF00;
+        }
+    }
+  \end{minted}  
+\end{frame}
+
+\begin{frame}[fragile]{Tipi di dispositivo}\transfade\centering
+  \begin{description}[<+->]
+    \itemtt[\mintcss{@media all}] Tutti i dispositivi.
+    \itemtt[\mintcss{@media screen}] Sullo schermo (computer, telefono, tablet, televisione, \dots).
+    \itemtt[\mintcss{@media print}] Per la stampa.
+    \itemtt[\mintcss{@media speech}] Per i lettori di schermo.
+    \bigskip    
+    \itemtt[\mintcss{@media not screen}] Per tutti tranne gli schermi.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Proprietà del dispositivo}\transfade\centering
+  \begin{minted}{css}
+    @media screen and (min-width: 200px and max-width: 400px) {
+        /* per finestre larghe fra i 200px e i 400px */
+    }
+    
+    @media screen and (min-height: 200px and max-height: 400px) {
+        /* per finestre alte fra i 200px e i 400px */
+    }
+    
+    @media screen and (orientation: landscape /* oppure portrait */) {
+        /* se la visuale è orizzontale (oppure verticale) */
+        /* anche sui computer, non solo sui telefoni e tablet */
+    }
+  \end{minted}  
+\end{frame}

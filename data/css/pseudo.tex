@@ -2,6 +2,18 @@
 \secmeme{css/focus}
 \section{Pseudoclassi}
 
+\begin{frame}[fragile]{Pseudoclassi}\transfade\centering
+  \begin{description}[<+->]
+    \itemtt[\mintcss{p:hover}] identifica ogni elemento con tag \minttag{p} sopra il quale si trova il cursore del mouse.
+    \itemtt[\mintcss{p:empty}] identifica ogni elemento con tag \minttag{p} vuoto (senza contenuto).
+    \itemtt[\mintcss{input:focus}] identifica l'elemento \minttag{input} selezionato.
+    \itemtt[\mintcss{input:disabled}] identifica ogni elemento \minttag{input} disabilitato.
+    \itemtt[\mintcss{.giallo:not(p)}] identifica ogni elemento appartenente alla classe \mintattribute{giallo}, eccetto i \minttag{p}.
+    \itemtt[\dots]
+  \end{description}
+\end{frame}
+
+
 %%%%%% MEMORY
 \begin{frame}[fragile]\transfade
   \begin{exercise}\centering

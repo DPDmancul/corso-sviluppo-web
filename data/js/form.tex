@@ -38,7 +38,7 @@
 
     const dati = new FormData(document.forms["login"]);
 
-    fetch("https://mio_backedn.local/", {
+    fetch("https://mio_backend.local/", {
         method: "POST",
         body: dati, // Invia il form
     })
@@ -65,7 +65,7 @@
     const dati = new FormData(document.forms["login"]); // FormData
     const dati_obj = Object.fromEntries(dati); // Oggetto
 
-    fetch("https://mio_backedn.local", {
+    fetch("https://mio_backend.local", {
         method: "POST",
         headers: {"Content-Type" : 'application/json'},
         body: JSON.stringify(dati_obj),  // Invia il form come JSON

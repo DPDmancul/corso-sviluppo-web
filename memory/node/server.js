@@ -34,7 +34,7 @@ function genera_numeri_tessere(size){
     * Il tavolo da gioco sarà rappresentato da un array contenente tutte le righe una dopo l'altra
     * @type number[]
     */
-    let board = new Array(size*size);
+    let board = Array(size*size);
     
     // Riempie il tavolo da gioco
     for(let i = 0; i < size*size; ++i)
